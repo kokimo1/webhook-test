@@ -1,32 +1,3 @@
-name: build
-on:
-  pull_request:
-
-jobs:
-  testJob:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          exit 0
-  build:
-    name: Checkout and notify
-    needs: [ TestJob ]
-    if: ${{always()}}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - uses: freezer00/teams-webhook-action@v1.0.0
-        with:
-          webhook_url: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
-          needs: ${{ toJson(needs) }}
-          job: ${{ toJson(job) }}
-          title: Custom title
-          additional_button_title: |-
-            Link to Google
-            Link to Microsoft
-          additional_button_url: |-
-            https://google.com
-            https://www.microsoft.com/de-de/microsoft-teams
-          dry_run: false
+version https://git-lfs.github.com/spec/v1
+oid sha256:5c3c84d9b6f585490c40a051503f8717c62739db4fefa6a231da9240d1626133
+size 1045
