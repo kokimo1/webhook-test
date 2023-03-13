@@ -1,7 +1,11 @@
 name: build
 on:
   pull_request:
-
+    branches:
+      - develop
+  issues:
+    types:
+      - opened
 jobs:
   testJob:
     runs-on: ubuntu-latest
