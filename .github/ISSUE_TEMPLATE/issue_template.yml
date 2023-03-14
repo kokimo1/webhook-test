@@ -3,6 +3,7 @@ description: Request a new feature or enhancement of an existing one
 title: "[Feature Request]: "
 labels: ["feature-request", "enhancement-request"]
 
+
 body:
   # - type: markdown
   #   attributes:
@@ -36,6 +37,21 @@ body:
       description: "Please enter your VC unit or College if applicable"
     validations:
       required: true
+  - type: checkboxes
+    id: use-cases
+    attributes:
+      label: What best fits your motivations for this request? Check all that apply.
+      options:
+        - label: Better marketing and/or branding
+          required: false
+        - label: Assists with recruitment
+          required: false
+        - label: Improves experience for a site visitor
+          required: false
+        - label: Improves experience for a WordPress user (site admin, editor, etc)
+          required: false
+        - label: Needed for data collection
+          required: false
   - type: textarea
     id: propose-solution
     attributes:
