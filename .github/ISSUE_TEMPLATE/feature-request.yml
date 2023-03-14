@@ -1,47 +1,61 @@
 name: Feature Request
-description: Propose a feature request or enhancement
+description: Request a new feature or an enhancement to an existing one
 title: "[Feature Request]: "
-labels: ["feature-request","enhancement"]
-assignees:
-  - none
+labels: ["feature-request", "feature-enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for your submission.
+        Thank you for your submission
+
   - type: textarea
-    id: feature-request-name
+    id: request-name
     attributes:
-      label: Feature request name
+      label: Name of this request
+      placeholder: "example: Component for squirrel profiles"
     validations:
       required: true
+
   - type: input
     id: contact
     attributes:
       label: Contact Details
       description: How can we get in touch with you if we need more info?
-      placeholder: ex netid@uic.edu
+      placeholder: ex. netid@uic.edu
     validations:
-      required: false
-  - type: checkboxes
+      required: true
+
+  - type: dropdown
     id: dev-status
     attributes:
       label: "Can you contribute to the codebase for this feature?"
+      multiple: false
       options:
-        - label: Testing 1 2 3
-          required: true
+        - No
+        - Yes
+
   - type: textarea
-    id: campus-unit
+    id: vc-unit
     attributes:
-      label: Campus Unit
-      description: Please enter your VC unit or College if applicable
+      label: Campus unit
+      description: "Please enter your VC unit or College if applicable"
     validations:
       required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+
   - type: checkboxes
     id: use-cases
     attributes:
       label: What best fits your motivations for this request? Check all that apply.
-      description: descript
       options:
         - label: Better marketing and/or branding
           required: false
@@ -53,35 +67,43 @@ body:
           required: false
         - label: Needed for data collection
           required: false
+
   - type: textarea
     id: propose-solution
     attributes:
-      label: Propose a solution
+      label: "Propose a solution"
     validations:
       required: true
+
   - type: textarea
     id: who-will-use
     attributes:
-      label: Who will use this feature?
+      label: "Who will use this feature?"
     validations:
       required: true
+
+
   - type: textarea
     id: who-will-benefit
     attributes:
-      label: Who will benefit from this feature?
+      label: "Who benefit from this feature?"
     validations:
       required: true
+
   - type: textarea
     id: is-feature-necessary
     attributes:
-      label: Is this feature necessary for a particular Red site to function?
+      label: "Is this feature necessary for a particular Red site to function?"
     validations:
       required: true
+
   - type: checkboxes
-    id: request-may-involve
+    id: terms
     attributes:
-      label: This request may involve
+      label: " This request may involve"
       options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
         - label: Component
           required: false
         - label: Custom Post type
@@ -92,9 +114,11 @@ body:
           required: false
         - label: Other/I don't know
           required: false
+
   - type: textarea
-    id: who-will-use
+    id: provide-links-solutions
     attributes:
-      label: Please provide links to similar solutions found on other sites (if applicable)
+      label: "Please provide links to similar solutions found on other sites (if applicable)"
     validations:
       required: false
+
