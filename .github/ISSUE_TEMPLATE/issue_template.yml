@@ -27,7 +27,6 @@ body:
     id: dev-status
     attributes:
       label: "Can you contribute to the codebase for this feature?"
-      multiple: true
       options:
         - Yes
   - type: textarea
