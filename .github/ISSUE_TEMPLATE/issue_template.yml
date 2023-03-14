@@ -17,10 +17,24 @@ body:
     validations:
       required: true
   - type: input
-    id: contact
+    id: contact-name
+    attributes:
+      label: Your name
+      placeholder: "Your name"
+    validations:
+      required: true
+  - type: input
+    id: contact-email
     attributes:
       label: Your email
       placeholder: "netid@uic.edu"
+    validations:
+      required: true
+  - type: input
+    id: vc-unit
+    attributes:
+      label: Campus unit
+      description: "Please enter your VC unit or College if applicable"
     validations:
       required: true
   - type: checkboxes
@@ -30,13 +44,6 @@ body:
       options:
         - label: "Yes"
           required: false
-  - type: input
-    id: vc-unit
-    attributes:
-      label: Campus unit
-      description: "Please enter your VC unit or College if applicable"
-    validations:
-      required: true
   - type: checkboxes
     id: use-cases
     attributes:
