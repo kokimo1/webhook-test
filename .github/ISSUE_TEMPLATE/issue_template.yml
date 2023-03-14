@@ -23,3 +23,34 @@ body:
       placeholder: ex. netid@uic.edu
     validations:
       required: true
+  - type: textarea
+    id: vc-unit
+    attributes:
+      label: Campus unit
+      description: "Please enter your VC unit or College if applicable"
+    validations:
+      required: true
+  - type: textarea
+    id: propose-solution
+    attributes:
+      label: "Propose a solution"
+    validations:
+      required: true
+  - type: textarea
+    id: who-will-use
+    attributes:
+      label: "Who will use this feature?"
+    validations:
+      required: true
+  - type: textarea
+    id: who-will-benefit
+    attributes:
+      label: "Who benefit from this feature?"
+    validations:
+      required: true
+  - type: textarea
+    id: is-feature-necessary
+    attributes:
+      label: "Is this feature necessary for a particular Red site to function?"
+    validations:
+      required: true
