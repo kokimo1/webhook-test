@@ -27,7 +27,8 @@ body:
   - type: input
     id: vc-unit
     attributes:
-      label: Vice Chancellor Unit/College and your department
+      label: VC Unit/College and your department name
+      placeholder: "Vice Chancellor for Innovation, Office of Pizza & Burgers"
     validations:
       required: true
   - type: checkboxes
