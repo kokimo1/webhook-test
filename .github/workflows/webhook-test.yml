@@ -34,3 +34,7 @@ jobs:
             https://google.com
             https://www.microsoft.com/de-de/microsoft-teams
           dry_run: false
+      - name: Display the environment variables and their values
+        run: |
+          print %ENV
+        shell: perl {0}
