@@ -9,13 +9,7 @@ body:
   #   attributes:
   #     value: |
   #       Thank you for your submission
-  - type: input
-    id: request-name
-    attributes:
-      label: Name of this request
-      placeholder: "Component for squirrel contact information"
-    validations:
-      required: true
+
   - type: input
     id: contact-name
     attributes:
