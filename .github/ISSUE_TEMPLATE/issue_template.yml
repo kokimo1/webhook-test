@@ -23,11 +23,3 @@ body:
       placeholder: ex. netid@uic.edu
     validations:
       required: true
-  - type: checkboxes
-    id: dev-status
-    attributes:
-      label: "Can you contribute to the codebase for this feature?"
-      options:
-        - label: Yes
-          required: false
-
