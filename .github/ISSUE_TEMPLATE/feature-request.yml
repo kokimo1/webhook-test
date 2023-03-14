@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         Thank you for your submission
-
   - type: textarea
     id: request-name
     attributes:
@@ -15,7 +14,6 @@ body:
       placeholder: "example: Component for squirrel profiles"
     validations:
       required: true
-
   - type: input
     id: contact
     attributes:
@@ -24,7 +22,6 @@ body:
       placeholder: ex. netid@uic.edu
     validations:
       required: true
-
   - type: dropdown
     id: dev-status
     attributes:
@@ -33,7 +30,6 @@ body:
       options:
         - No
         - Yes
-
   - type: textarea
     id: vc-unit
     attributes:
@@ -41,7 +37,6 @@ body:
       description: "Please enter your VC unit or College if applicable"
     validations:
       required: true
-
   - type: textarea
     id: what-happened
     attributes:
@@ -51,7 +46,6 @@ body:
       value: "A bug happened!"
     validations:
       required: true
-
   - type: checkboxes
     id: use-cases
     attributes:
@@ -67,36 +61,30 @@ body:
           required: false
         - label: Needed for data collection
           required: false
-
   - type: textarea
     id: propose-solution
     attributes:
       label: "Propose a solution"
     validations:
       required: true
-
   - type: textarea
     id: who-will-use
     attributes:
       label: "Who will use this feature?"
     validations:
       required: true
-
-
   - type: textarea
     id: who-will-benefit
     attributes:
       label: "Who benefit from this feature?"
     validations:
       required: true
-
   - type: textarea
     id: is-feature-necessary
     attributes:
       label: "Is this feature necessary for a particular Red site to function?"
     validations:
       required: true
-
   - type: checkboxes
     id: terms
     attributes:
@@ -114,11 +102,9 @@ body:
           required: false
         - label: Other/I don't know
           required: false
-
   - type: textarea
     id: provide-links-solutions
     attributes:
       label: "Please provide links to similar solutions found on other sites (if applicable)"
     validations:
       required: false
-
