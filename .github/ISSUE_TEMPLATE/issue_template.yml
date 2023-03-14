@@ -4,15 +4,15 @@ title: "[Bug]: "
 labels: ["bug", "triage"]
 
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thank you for your submission
-  - type: textarea
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       Thank you for your submission
+  - type: input
     id: request-name
     attributes:
       label: Name of this request
-      placeholder: "example: Component for squirrel profiles"
+      placeholder: "Component for squirrel contact information"
     validations:
       required: true
   - type: input
@@ -20,16 +20,18 @@ body:
     attributes:
       label: Contact Details
       description: How can we get in touch with you if we need more info?
-      placeholder: ex. netid@uic.edu
+      placeholder: "netid@uic.edu"
     validations:
       required: true
-  - type: dropdown
-    id: dev-status
+  - type: checkboxes
+    id: terms
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
-        - "No"
-        - "Yes"
+        - label: No
+          required: false
+        - label: Yes
+          required: false
   - type: textarea
     id: vc-unit
     attributes:
@@ -68,12 +70,10 @@ body:
     validations:
       required: false
   - type: checkboxes
-    id: terms
+    id: request-may-involve
     attributes:
       label: "This request may involve"
       options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
         - label: Component
           required: false
         - label: Custom Post type
