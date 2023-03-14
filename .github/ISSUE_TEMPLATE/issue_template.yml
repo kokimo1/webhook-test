@@ -28,8 +28,6 @@ body:
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
-        - label: "No"
-          required: false
         - label: "Yes"
           required: false
   - type: textarea
