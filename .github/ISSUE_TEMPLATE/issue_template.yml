@@ -54,3 +54,26 @@ body:
       label: "Is this feature necessary for a particular Red site to function?"
     validations:
       required: true
+  - type: textarea
+    id: provide-links-solutions
+    attributes:
+      label: "Please provide links to similar solutions found on other sites (if applicable)"
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "This request may involve"
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+        - label: Component
+          required: false
+        - label: Custom Post type
+          required: false
+        - label: Plugin
+          required: false
+        - label: Acquisition of a paid license
+          required: false
+        - label: Other/I don't know
+          required: false
