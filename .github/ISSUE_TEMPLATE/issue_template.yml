@@ -28,9 +28,9 @@ body:
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
-        - label: No
+        - label: "No"
           required: false
-        - label: Yes
+        - label: "Yes"
           required: false
   - type: textarea
     id: vc-unit
