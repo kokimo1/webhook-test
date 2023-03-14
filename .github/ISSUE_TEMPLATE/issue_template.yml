@@ -28,7 +28,8 @@ body:
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
-      - Yes
+        - "No"
+        - "Yes"
   - type: textarea
     id: vc-unit
     attributes:
