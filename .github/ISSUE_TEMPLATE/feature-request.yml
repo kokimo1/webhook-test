@@ -28,7 +28,7 @@ body:
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
-        - label: Testing 1 2 3 
+        - label: Testing 1 2 3
           required: true
   - type: textarea
     id: campus-unit
