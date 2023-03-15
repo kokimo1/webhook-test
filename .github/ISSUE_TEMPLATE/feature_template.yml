@@ -103,7 +103,7 @@ body:
   - type: textarea
     id: additional-information
     attributes:
-      label: Additional information"
+      label: Additional information about this feature/enhancement
       description: "To attach files: (1) click in the text box below and (2) drag & drop the file(s) into the box. If you want to submit a screenshot but don't know how, [follow these instructions](https://www.take-a-screenshot.org/)"
     validations:
       required: false

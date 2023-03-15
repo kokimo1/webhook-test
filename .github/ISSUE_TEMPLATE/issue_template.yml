@@ -1,8 +1,7 @@
-name: Bug report
-description: Report a bug or issue
-title: "[Bug]: "
-labels: ["bug"]
-
+name: Issue report
+description: Report an issue, bug, or error message
+title: "[Issue]: "
+labels: ["issue"]
 
 body:
   # - type: markdown
