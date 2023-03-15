@@ -81,6 +81,7 @@ body:
     id: feature-provide-links-solutions
     attributes:
       label: "Please provide links to similar solutions found on other sites (if applicable)"
+      placeholder: 'Example: our director likes the list of "Trending" stories in the sidebar of the Harvard Gazette. Please see this page for details: https://news.harvard.edu/gazette/story/2019/02/martha-whitehead-of-queens-university-chosen-to-lead-the-harvard-library/.'
     validations:
       required: false
   - type: checkboxes
