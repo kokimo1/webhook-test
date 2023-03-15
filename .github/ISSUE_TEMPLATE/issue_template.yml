@@ -32,16 +32,13 @@ body:
     validations:
       required: true
 
-  - type: dropdown
+  - type: checkboxes
     id: dev-status
     attributes:
-      label: "Can you contribute to the codebase for this bug/issue?"
-      multiple: false
+      label: "Can you contribute to the codebase for this issue?"
       options:
-        - "No"
-        - "Yes"
-    validations:
-      required: true
+        - label: "Yes"
+          required: false
 
   - type: checkboxes
     id: issue-list
@@ -59,16 +56,13 @@ body:
         - label: Other
           required: false
 
-  - type: dropdown
+  - type: checkboxes
     id: error-message
     attributes:
-      label: Do you see an error message?
-      multiple: false
+      label: "Do you see an error message?"
       options:
-        - "No"
-        - "Yes"
-    validations:
-      required: true
+        - label: "Yes"
+          required: false
 
   - type: textarea
     id: describe-problem
