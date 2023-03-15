@@ -41,7 +41,7 @@ body:
         - "No"
         - "Yes"
     validations:
-      required: false
+      required: true
 
   - type: checkboxes
     id: issue-list
@@ -68,7 +68,7 @@ body:
         - "No"
         - "Yes"
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: describe-problem
