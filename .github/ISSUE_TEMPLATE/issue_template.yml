@@ -31,23 +31,10 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: issue-dev-status
-    attributes:
-      label: "Can you contribute to the codebase for this issue?"
-      options:
-        - label: "Yes"
-          required: false
-  - type: textarea
-    id: issue-url
-    attributes:
-      label: "The full URL where the issue occurs. E.g.  https://uic.edu"
-      placeholder: "https://uic.edu"
-    validations:
-      required: true
-  - type: checkboxes
     id: issue-list
     attributes:
       label: Issue
+      description: 'If you select "Other," please describe the issue in the box at the bottom of this form.'
       options:
         - label: I can't log in
           required: false
@@ -58,6 +45,20 @@ body:
         - label: Form problems
           required: false
         - label: Other
+          required: false
+  - type: textarea
+    id: issue-url
+    attributes:
+      label: "The full URL where the issue occurs. E.g.  https://uic.edu"
+      placeholder: "https://uic.edu"
+    validations:
+      required: true
+  - type: checkboxes
+    id: issue-dev-status
+    attributes:
+      label: "Can you contribute to the codebase for this issue?"
+      options:
+        - label: "Yes"
           required: false
   - type: checkboxes
     id: issue-error-message
