@@ -1,7 +1,7 @@
 name: Feature Request
 description: Request a new feature or enhancement of an existing one
 title: "[Feature Request]: "
-labels: ["feature-request", "enhancement-request"]
+labels: ["feature request"]
 
 
 body:
@@ -11,35 +11,35 @@ body:
   #       Thank you for your submission
 
   - type: input
-    id: contact-name
+    id: feature-contact-name
     attributes:
       label: Your name
       placeholder: "Your name"
     validations:
       required: true
   - type: input
-    id: contact-email
+    id: feature-contact-email
     attributes:
       label: Your email
       placeholder: "netid@uic.edu"
     validations:
       required: true
   - type: input
-    id: vc-unit
+    id: feature-vc-unit
     attributes:
       label: VC Unit/College and your department name
       placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
     validations:
       required: true
   - type: checkboxes
-    id: dev-status
+    id: feature-dev-status
     attributes:
       label: "Can you contribute to the codebase for this feature?"
       options:
         - label: "Yes"
           required: false
   - type: checkboxes
-    id: use-cases
+    id: feature-use-cases
     attributes:
       label: What best fits your motivations for this request? Check all that apply.
       options:
@@ -54,37 +54,37 @@ body:
         - label: Needed for data collection
           required: false
   - type: textarea
-    id: propose-solution
+    id: feature-propose-solution
     attributes:
       label: "Propose a solution"
     validations:
       required: true
   - type: textarea
-    id: who-will-use
+    id: feature-who-will-use
     attributes:
       label: "Who will use this feature?"
     validations:
       required: true
   - type: textarea
-    id: who-will-benefit
+    id: feature-who-will-benefit
     attributes:
       label: "Who benefit from this feature?"
     validations:
       required: true
   - type: input
-    id: is-feature-necessary
+    id: feature-is-feature-necessary
     attributes:
       label: "Is this feature necessary for a particular Red site to function?"
     validations:
       required: true
   - type: textarea
-    id: provide-links-solutions
+    id: feature-provide-links-solutions
     attributes:
       label: "Please provide links to similar solutions found on other sites (if applicable)"
     validations:
       required: false
   - type: checkboxes
-    id: request-may-involve
+    id: feature-request-may-involve
     attributes:
       label: "This request may involve"
       options:
@@ -101,7 +101,7 @@ body:
         - label: Other/I don't know
           required: false
   - type: textarea
-    id: additional-information
+    id: feature-additional-information
     attributes:
       label: Additional information about this feature/enhancement
       description: "To attach files: (1) click in the text box below and (2) drag & drop the file(s) into the box. If you want to submit a screenshot but don't know how, [follow these instructions](https://www.take-a-screenshot.org/)"
