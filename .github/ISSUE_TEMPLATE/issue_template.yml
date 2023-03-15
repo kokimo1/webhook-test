@@ -38,6 +38,13 @@ body:
       options:
         - label: "Yes"
           required: false
+  - type: input
+    id: url
+    attributes:
+      label: "The full URL where the issue occurs. E.g. - https://uic.edu"
+      placeholder: "https://uic.edu"
+    validations:
+      required: true
   - type: checkboxes
     id: issue-list
     attributes:
@@ -64,6 +71,6 @@ body:
     id: describe-problem
     attributes:
       label: "Describe the problem"
-      description: "You can attach files by dragging them into the text block below."
+      description: "To attach files: (1) click in the text box below and (2) drag & drop the files into the box."
     validations:
       required: true

@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: STATUS.UIC.EDU
+    url: https://status.uic.edu
+    about: Check status for all online UIC systems
   - name: Red developer documentation
     url: https://develop.red.uic.edu/
     about: Codebase documentation for web developers
