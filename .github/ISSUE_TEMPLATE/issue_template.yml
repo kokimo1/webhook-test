@@ -71,6 +71,6 @@ body:
     id: describe-problem
     attributes:
       label: "Describe the problem"
-      description: "To attach files: (1) click in the text box below and (2) drag & drop the files into the box."
+      description: "To attach files: (1) click in the text box below and (2) drag & drop the file(s) into the box. If you want to submit a screenshot but don't know how, [follow these instructions](https://www.take-a-screenshot.org/)"
     validations:
       required: true
