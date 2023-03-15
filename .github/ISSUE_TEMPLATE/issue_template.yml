@@ -31,7 +31,6 @@ body:
       placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
     validations:
       required: true
-
   - type: checkboxes
     id: dev-status
     attributes:
@@ -39,7 +38,6 @@ body:
       options:
         - label: "Yes"
           required: false
-
   - type: checkboxes
     id: issue-list
     attributes:
@@ -55,7 +53,6 @@ body:
           required: false
         - label: Other
           required: false
-
   - type: checkboxes
     id: error-message
     attributes:
@@ -63,10 +60,10 @@ body:
       options:
         - label: "Yes"
           required: false
-
   - type: textarea
     id: describe-problem
     attributes:
       label: "Describe the problem"
+      description: "You can attach files by dragging them into the text block below."
     validations:
       required: true
