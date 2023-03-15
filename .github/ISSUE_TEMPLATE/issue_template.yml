@@ -1,0 +1,100 @@
+name: Bug report
+description: Report a bug
+title: "[Bug]: "
+labels: ["bug"]
+
+
+body:
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       Thank you for your submission
+
+  - type: input
+    id: contact-name
+    attributes:
+      label: Your name
+      placeholder: "Your name"
+    validations:
+      required: true
+  - type: input
+    id: contact-email
+    attributes:
+      label: Your email
+      placeholder: "netid@uic.edu"
+    validations:
+      required: true
+  - type: input
+    id: vc-unit
+    attributes:
+      label: VC Unit/College and your department name
+      placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Can you contribute to the codebase for this feature?"
+      options:
+        - label: "Yes"
+          required: false
+  - type: checkboxes
+    id: use-cases
+    attributes:
+      label: What best fits your motivations for this request? Check all that apply.
+      options:
+        - label: Better marketing and/or branding
+          required: false
+        - label: Assists with recruitment
+          required: false
+        - label: Improves experience for a site visitor
+          required: false
+        - label: Improves experience for a WordPress user (site admin, editor, etc)
+          required: false
+        - label: Needed for data collection
+          required: false
+  - type: textarea
+    id: propose-solution
+    attributes:
+      label: "Propose a solution"
+    validations:
+      required: true
+  - type: textarea
+    id: who-will-use
+    attributes:
+      label: "Who will use this feature?"
+    validations:
+      required: true
+  - type: textarea
+    id: who-will-benefit
+    attributes:
+      label: "Who benefit from this feature?"
+    validations:
+      required: true
+  - type: input
+    id: is-feature-necessary
+    attributes:
+      label: "Is this feature necessary for a particular Red site to function?"
+    validations:
+      required: true
+  - type: textarea
+    id: provide-links-solutions
+    attributes:
+      label: "Please provide links to similar solutions found on other sites (if applicable)"
+    validations:
+      required: false
+  - type: checkboxes
+    id: request-may-involve
+    attributes:
+      label: "This request may involve"
+      options:
+        - label: Component
+          required: false
+        - label: Custom Post type
+          required: false
+        - label: Plugin
+          required: false
+        - label: Acquisition of a paid license
+          required: false
+        - label: Other/I don't know
+          required: false
