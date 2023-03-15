@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a bug
+description: Report a bug or issue
 title: "[Bug]: "
 labels: ["bug"]
 
@@ -31,70 +31,48 @@ body:
       placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
     validations:
       required: true
-  - type: checkboxes
-    id: terms
+
+  - type: dropdown
+    id: dev-status
     attributes:
-      label: "Can you contribute to the codebase for this feature?"
+      label: "Can you contribute to the codebase for this bug/issue?"
+      multiple: false
       options:
-        - label: "Yes"
-          required: false
-  - type: checkboxes
-    id: use-cases
-    attributes:
-      label: What best fits your motivations for this request? Check all that apply.
-      options:
-        - label: Better marketing and/or branding
-          required: false
-        - label: Assists with recruitment
-          required: false
-        - label: Improves experience for a site visitor
-          required: false
-        - label: Improves experience for a WordPress user (site admin, editor, etc)
-          required: false
-        - label: Needed for data collection
-          required: false
-  - type: textarea
-    id: propose-solution
-    attributes:
-      label: "Propose a solution"
-    validations:
-      required: true
-  - type: textarea
-    id: who-will-use
-    attributes:
-      label: "Who will use this feature?"
-    validations:
-      required: true
-  - type: textarea
-    id: who-will-benefit
-    attributes:
-      label: "Who benefit from this feature?"
-    validations:
-      required: true
-  - type: input
-    id: is-feature-necessary
-    attributes:
-      label: "Is this feature necessary for a particular Red site to function?"
-    validations:
-      required: true
-  - type: textarea
-    id: provide-links-solutions
-    attributes:
-      label: "Please provide links to similar solutions found on other sites (if applicable)"
+        - "No"
+        - "Yes"
     validations:
       required: false
+
   - type: checkboxes
-    id: request-may-involve
+    id: issue-list
     attributes:
-      label: "This request may involve"
+      label: Issue
       options:
-        - label: Component
+        - label: I can't log in
           required: false
-        - label: Custom Post type
+        - label: A page is not displaying correctly
           required: false
-        - label: Plugin
+        - label: Menu problems
           required: false
-        - label: Acquisition of a paid license
+        - label: Form problems
           required: false
-        - label: Other/I don't know
+        - label: Other
           required: false
+
+  - type: dropdown
+    id: error-message
+    attributes:
+      label: Do you see an error message?
+      multiple: false
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: false
+
+  - type: textarea
+    id: describe-problem
+    attributes:
+      label: "Describe the problem"
+    validations:
+      required: true
