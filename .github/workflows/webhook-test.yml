@@ -22,7 +22,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
-      - uses: freezer00/teams-webhook-action@v1.0.0
+      - name: Webhook
+        uses: freezer00/teams-webhook-action@v1.0.0
         if: ${{ <github.event_name> }} == 'pull_request'
         with:
           title: Pull request
@@ -30,7 +31,8 @@ jobs:
           needs: ${{ toJson(needs) }}
           job: ${{ toJson(job) }}
           dry_run: false
-      - uses: freezer00/teams-webhook-action@v1.0.0
+      - name: Webhook
+        uses: freezer00/teams-webhook-action@v1.0.0
         if: ${{ <github.event_name> }} == 'issues'
         with:
           title: ${{ github.event.issue.title }}
