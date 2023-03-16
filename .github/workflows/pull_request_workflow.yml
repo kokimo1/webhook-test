@@ -15,3 +15,8 @@ jobs:
       - uses: kceb/pull-request-url-action@v1
         id: pr-url
       - run: echo "${{ steps.pr-url.outputs.url }}"
+        with:
+          additional_button_title: |-
+            PR link
+          additional_button_url: |-
+            ${{ steps.pr-url.outputs.url }}
