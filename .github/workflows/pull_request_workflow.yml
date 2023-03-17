@@ -26,7 +26,7 @@ jobs:
         with:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
           title: ${{ github.workflow }}
-          message: <strong>${{ env.develop_branch }} ${{ github.event.pull_request.title }}</strong><hr>
+          message: <strong>in ${{ github.repository }}</strong><hr>
           color: ff69b4
           buttons: |
             'View Pull Request' ${{ steps.pr-url.outputs.url }}
@@ -37,13 +37,16 @@ jobs:
               activitySubtitle:
               facts:
                 -
-                  name: "Repo"
-                  value: ${{ github.repository }}
-                -
                   name: "Submitted by"
                   value: ${{ github.triggering_actor }}
                 -
-                  name: "Time"
+                  name: "into"
+                  value: Develop
+                -
+                  name: "from"
+                  value: ${{ github.event.pull_request.title }}
+                -
+                  name: "on"
                   value: ${{ steps.time.outputs.time }}
 
 
