@@ -27,14 +27,15 @@ jobs:
             'View Project' 'https://github.com/orgs/uic-ts/projects/1'
           sections: |
             -
-              activityTitle: ${{ env.submitted_by }} ${{ github.triggering_actor }}
+              activityTitle:
               activitySubtitle:
               facts:
                 -
-                  name: "github.event_name"
-                  value: ${{ github.event_name }}
-                -
-                  name: "github.repository"
+                  name: "Repo"
                   value: ${{ github.repository }}
+                -
+                  name: "Submitted by"
+                  value: ${{ github.triggering_actor }}
 
-              text: Lorem ipsum 
+
+              text:
