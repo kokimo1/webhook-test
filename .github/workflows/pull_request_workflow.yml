@@ -14,7 +14,7 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
-          title: Argh ${{ github.event.issue.title }}
+          title: ${{ github.event.issue.title }}
           message: message goes here
           color: ff69b4
           buttons: |
@@ -35,13 +35,36 @@ jobs:
                   name: "github.run_id"
                   value: ${{ github.run_id }}
                 -
-                  name: "github.ref:"
+                  name: "github.ref"
                   value: ${{ github.ref }}
                 -
                   name: "github.ref_name"
                   value: ${{ github.ref_name }}
+
+                -
+                  name: "github.action_status"
+                  value: ${{ github.action_status }}
+                -
+                  name: "github.actor"
+                  value: ${{ github.actor }}
                 -
                   name: "github.action"
                   value: ${{ github.action }}
+                -
+                  name: "github.env"
+                  value: ${{ github.env}}
+                -
+                  name: "github.event"
+                  value: ${{ github.event }}
+
+                -
+                  name: "github.event"
+                  value: ${{ github.event_name }}
+                -
+                  name: "github.job"
+                  value: ${{ github.job }}
+                -
+                  name: "github.job_workflow_sha"
+                  value: ${{ github.job_workflow_sha }}
 
               text: Lorem ipsum 
