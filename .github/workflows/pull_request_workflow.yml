@@ -1,4 +1,4 @@
-name: 'Pull Request'
+name: 'Pull Request (${{ github.repository }})'
 
 on:
   pull_request:
@@ -34,7 +34,7 @@ jobs:
             'View Project' 'https://github.com/orgs/uic-ts/projects/1'
           sections: |
             -
-              activityTitle: ${{ github.repository }}
+              activityTitle:
               activitySubtitle:
               facts:
                 -
