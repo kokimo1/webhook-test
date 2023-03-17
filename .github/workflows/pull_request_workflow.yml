@@ -40,7 +40,6 @@ jobs:
                 -
                   name: "github.ref_name"
                   value: ${{ github.ref_name }}
-
                 -
                   name: "github.action_status"
                   value: ${{ github.action_status }}
@@ -56,7 +55,6 @@ jobs:
                 -
                   name: "github.event"
                   value: ${{ github.event }}
-
                 -
                   name: "github.event"
                   value: ${{ github.event_name }}
@@ -66,5 +64,27 @@ jobs:
                 -
                   name: "github.job_workflow_sha"
                   value: ${{ github.job_workflow_sha }}
+
+
+
+                -
+                  name: "github.repository"
+                  value: ${{ github.repository }}
+                -
+                  name: "github.sha"
+                  value: ${{ github.sha }}
+                -
+                  name: "github.job_workflow_sha"
+                  value: ${{ github.job_workflow_sha }}
+                -
+                  name: "github.triggering_actor"
+                  value: ${{ github.job_workflow_sha }}
+                -
+                  name: "github.triggering_actor"
+                  value: ${{ github.job_workflow_sha }}
+                -
+                  name: "github.job_workflow_sha"
+                  value: ${{ github.job_workflow_sha }}
+
 
               text: Lorem ipsum 
