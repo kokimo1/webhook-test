@@ -12,9 +12,9 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - uses: kceb/pull-request-url-action@v1
-        id: pr-url
-      - run: echo "${{ steps.pr-url.outputs.url }}"
+      # - uses: kceb/pull-request-url-action@v1
+      #   id: pr-url
+      # - run: echo "${{ steps.pr-url.outputs.url }}"
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
