@@ -6,7 +6,7 @@ on:
   issues:
     types: [ opened ]
 env:
-  develop_branch: ': Develop <--- '
+  develop_branch: ': Develop < '
   submitted_by: 'submitted by '
 jobs:
   notify:
@@ -16,7 +16,7 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
-          title: ${{ github.event_name }} ${{ env.develop_branch }} ${{ github.event.pull_request.title }}
+          title: ${{ github.workflow }}${{ env.develop_branch }} ${{ github.event.pull_request.title }}
           message: ${{ env.submitted_by }} ${{ github.triggering_actor }}
           color: ff69b4
           buttons: |
@@ -28,9 +28,6 @@ jobs:
               activitySubtitle: activitySubtitle, timestamp?
               facts:
                 -
-                  name: "github.workflow"
-                  value: ${{ github.workflow }}
-                -
                   name: "github.run_id"
                   value: ${{ github.run_id }}
                 -
@@ -40,22 +37,13 @@ jobs:
                   name: "github.ref_name"
                   value: ${{ github.ref_name }}
                 -
-                  name: "github.action_status"
-                  value: ${{ github.action_status }}
-                -
-                  name: "github.actor"
-                  value: ${{ github.actor }}
-                -
-                  name: "github.action"
-                  value: ${{ github.action }}
-                -
-                  name: "github.env"
-                  value: ${{ github.env}}
+                  name: "github.pull_request_status"
+                  value: ${{ github.pull_request_status }}
                 -
                   name: "github.event"
                   value: ${{ github.event }}
                 -
-                  name: "github.event"
+                  name: "github.event_name"
                   value: ${{ github.event_name }}
                 -
                   name: "github.job"
