@@ -17,8 +17,8 @@ jobs:
         id: time
         uses: nanzm/get-time-action@v1.1
         with:
-          timeZone: 6
-          format: 'YYYY-MM-DD HH-mm-ss'
+          timeZone: 5
+          format: 'YYYY-MM-DD HH:mm TXD'
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
@@ -37,16 +37,16 @@ jobs:
               activitySubtitle:
               facts:
                 -
-                  name: "into:"
+                  name: "destination"
                   value: Develop
                 -
-                  name: "from:"
+                  name: "origin"
                   value: ${{ github.event.pull_request.title }}
                 -
-                  name: "submitted by:"
+                  name: "requestor"
                   value: ${{ github.triggering_actor }}
                 -
-                  name: "in this repo:"
+                  name: "repo"
                   value: ${{ github.repository }}
 
 
