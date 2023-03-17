@@ -12,7 +12,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: getPrUrl
+      - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
       - name: 📣 Send teams notification
@@ -23,12 +23,12 @@ jobs:
           message: <strong>${{ env.develop_branch }} ${{ github.event.pull_request.title }}</strong><hr>
           color: ff69b4
           buttons: |
-            'Button 1' https://uic.edu/
-            'Button number two' https://red.uic.edu/
+            'View Pull Request' ${{ steps.pr-url.outputs.url }}
+            'View Project' 'https://github.com/orgs/uic-ts/projects/1'
           sections: |
             -
               activityTitle: ${{ env.submitted_by }} ${{ github.triggering_actor }}
-              activitySubtitle: activitySubtitle
+              activitySubtitle:
               facts:
                 -
                   name: "github.event_name"
@@ -36,15 +36,5 @@ jobs:
                 -
                   name: "github.repository"
                   value: ${{ github.repository }}
-                -
-                  name: pull request url
-                  value: ${{ steps.pr-url.outputs.url }}
-                -
-                  name: github.run_id
-                  value: ${{ github.run_id }}
-                -
-                  name: display
-                  value: ${{ steps.pr-url.outputs.url }}
-
 
               text: Lorem ipsum 
