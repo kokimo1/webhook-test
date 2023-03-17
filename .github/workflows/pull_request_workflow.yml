@@ -26,18 +26,24 @@ jobs:
             -
               activityTitle: TESTNAME
               activitySubtitle: 9/13/2016, 3:34pm
-              activityImage: https://connectorsdemo.azurewebsites.net/images/MSC12_Oscar_002.jpg
               facts:
                 -
-                  name: "Board:"
-                  value: Name of board
+                  name: "github.event_name"
+                  value: ${{ github.event_name }}
                 -
-                  name: "List:"
-                  value: Name of list
+                  name: "github.workflow"
+                  value: ${{ github.workflow }}
                 -
-                  name: "Assigned to:"
-                  value: (none)
+                  name: "github.run_id"
+                  value: ${{ github.run_id }}
                 -
-                  name: "Due date:"
-                  value: (none)
+                  name: "github.ref:"
+                  value: ${{ github.ref }}
+                -
+                  name: "github.ref_name"
+                  value: ${{ github.ref_name }}
+                -
+                  name: "github.action"
+                  value: ${{ github.action }}
+
               text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
