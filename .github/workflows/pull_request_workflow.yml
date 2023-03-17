@@ -25,7 +25,7 @@ jobs:
           message: ${{ github.repository }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
             View Pull Request ${{ steps.pr-url.outputs.url }}
-            View Project 'https://github.com/orgs/uic-ts/projects/1'
+            View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
               activityTitle:
