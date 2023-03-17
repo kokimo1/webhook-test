@@ -34,7 +34,6 @@ jobs:
             -
               activityTitle: ${{ github.repository }}
               activitySubtitle:
-              text:
               facts:
                 -
                   name: "into"
