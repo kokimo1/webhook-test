@@ -64,9 +64,6 @@ jobs:
                 -
                   name: "github.job_workflow_sha"
                   value: ${{ github.job_workflow_sha }}
-
-
-
                 -
                   name: "github.repository"
                   value: ${{ github.repository }}
@@ -74,17 +71,8 @@ jobs:
                   name: "github.sha"
                   value: ${{ github.sha }}
                 -
-                  name: "github.job_workflow_sha"
-                  value: ${{ github.job_workflow_sha }}
-                -
                   name: "github.triggering_actor"
-                  value: ${{ github.job_workflow_sha }}
-                -
-                  name: "github.triggering_actor"
-                  value: ${{ github.job_workflow_sha }}
-                -
-                  name: "github.job_workflow_sha"
-                  value: ${{ github.job_workflow_sha }}
+                  value: ${{ github.triggering_actor }
 
 
               text: Lorem ipsum 
