@@ -72,7 +72,7 @@ jobs:
                   value: ${{ github.sha }}
                 -
                   name: "github.triggering_actor"
-                  value: ${{ github.triggering_actor }
+                  value: ${{ github.triggering_actor }}
 
 
               text: Lorem ipsum 
