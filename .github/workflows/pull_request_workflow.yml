@@ -5,20 +5,19 @@ on:
     branches: [ develop ]
   issues:
     types: [ opened ]
-
+env:
+  develop_branch: ': Develop <--- '
+  submitted_by: 'submitted by '
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
-        env:
-          develop_branch: ': Develop <--- '
-          submitted_by: 'submitted by '
         with:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
-          title: ${{ github.event_name }} ${{ develop_branch }} ${{ github.event.pull_request.title }}
-          message: ${{ submitted_by }} ${{ github.triggering_actor }}
+          title: ${{ github.event_name }} $develop_branch ${{ github.event.pull_request.title }}
+          message: $submitted_by ${{ github.triggering_actor }}
           color: ff69b4
           buttons: |
             'Button 1' https://uic.edu/
