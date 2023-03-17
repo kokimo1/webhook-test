@@ -18,7 +18,7 @@ jobs:
         uses: nanzm/get-time-action@v1.1
         with:
           timeZone: 5
-          format: 'YYYY-MM-DD HH:mm TZD'
+          format: 'YYYY-MM-DD HH:mm '
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
