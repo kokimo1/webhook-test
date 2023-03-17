@@ -33,7 +33,6 @@ jobs:
           sections: |
             -
               activityTitle: ${{ github.repository }}
-              activitySubtitle:
               facts:
                 -
                   name: "into"
