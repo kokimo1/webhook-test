@@ -39,6 +39,10 @@ jobs:
                 -
                   name: pull request url
                   value: ${{ steps.pr-url.outputs.url }}
+                -
+                  name: github.job
+                  value: ${{ github.job }}
+
 
 
               text: Lorem ipsum 
