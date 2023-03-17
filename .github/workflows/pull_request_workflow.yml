@@ -1,7 +1,7 @@
 name: Check notification
 
 on:
-  push: {}
+  pull_request: { develop }
   release: {}
 
 jobs:
