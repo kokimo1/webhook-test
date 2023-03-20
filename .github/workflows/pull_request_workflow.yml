@@ -5,10 +5,10 @@ on:
     branches: [ develop ]
   issues:
     types: [ opened ]
+
 env:
-  develop_branch: 'Develop <-'
-  submitted_by: 'submitted by'
   color_var: ff69b4
+
 jobs:
   notify:
     runs-on: ubuntu-latest
