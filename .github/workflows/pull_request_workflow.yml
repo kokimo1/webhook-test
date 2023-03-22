@@ -3,8 +3,6 @@ name: 'Pull Request'
 on:
   pull_request:
     branches: [ develop ]
-  issues:
-    types: [ opened ]
 
 env:
   color_var: ff69b4
