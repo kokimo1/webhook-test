@@ -2,7 +2,7 @@ name: 'Feature Request'
 
 on:
   issues:
-    types: [ opened ]
+    types: [ opened, reopened ]
 
 env:
   color_var: ff9933
