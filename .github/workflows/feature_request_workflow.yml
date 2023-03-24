@@ -19,7 +19,7 @@ jobs:
           title: ${{ github.workflow }}
           message: ${{ github.repository }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
-            View Feature Request $${{ github.event.issue.html_url }}
+            View Feature Request ${{ github.event.issue.html_url }}
             View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
@@ -31,7 +31,7 @@ jobs:
                   value: Develop
                 -
                   name: "origin:"
-                  value: $${{ github.event.issue.title }}
+                  value: ${{ github.event.issue.title }}
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
