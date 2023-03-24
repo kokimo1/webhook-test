@@ -5,16 +5,13 @@ on:
     types: [ opened ]
 
 env:
-  color_var: ff69b4
-
-
+  color_var: ff9933
 
 jobs:
   notify:
-    if: ${{ github.event.label.name == 'feature request' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Get Pull Request URL
+      - name: Get Feature Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
       - name: 📣 Send teams notification
