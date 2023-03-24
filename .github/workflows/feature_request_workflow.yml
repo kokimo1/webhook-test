@@ -1,19 +1,16 @@
-name: 'Pull Request WORKFLOW'
+name: 'Feature Request'
 
 on:
-  pull_request:
-    branches: [ develop ]
+  issues:
+    types: [ opened, reopened ]
 
 env:
-  color_var: ff69b4
+  color_var: ff9933
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Pull Request URL
-        id: pr-url
-        uses: ammaratef45/pr-url-action@v1
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -22,7 +19,7 @@ jobs:
           title: ${{ github.workflow }}
           message: ${{ github.repository }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
-            View Pull Request ${{ steps.pr-url.outputs.url }}
+            View Feature Request $${{ github.event.issue.html_url }}
             View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
@@ -34,7 +31,7 @@ jobs:
                   value: Develop
                 -
                   name: "origin:"
-                  value: ${{ github.event.pull_request.title }}
+                  value: $${{ github.event.issue.title }}
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
