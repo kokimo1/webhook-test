@@ -20,8 +20,6 @@ jobs:
           message: ${{ github.event_name }} to ${{ github.ref_name }} by ${{ github.actor }}
           sections: |
             -
-              activityTitle: TITLE
-              activitySubtitle: SUBTITLE
               facts:
                 -
                   name: "job status:"
@@ -29,7 +27,7 @@ jobs:
 
                 -
                   name: "run attempt"
-                  value: ${{ github.run_attempt }}
+                  value: ${{ github.run_attempt }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
 
           buttons: |
             View Build https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}
