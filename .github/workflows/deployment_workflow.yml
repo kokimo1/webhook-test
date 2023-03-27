@@ -32,13 +32,37 @@ jobs:
 
                 -
                   name: "triggered by"
-                  value: ${{ github.triggering_actor }}
+                  value: ${{ github.actor }}
 
+
+                -
+                  name: "github event"
+                  value: ${{ github.event }}
 
                 -
                   name: "github event name"
                   value: ${{ github.event_name }}
                 -
-                  name: "event action"
+                  name: "github event action"
                   value: ${{ github.event.action }}
+
+                -
+                  name: "github action path"
+                  value: ${{ github.action_path }}
+
+                -
+                  name: "github action status"
+                  value: ${{ github.action_status }}
+
+                -
+                  name: "env"
+                  value: ${{ github.env }}
+
+                -
+                  name: "ref name"
+                  value: ${{ github.ref_name }}
+
+                -
+                  name: "run attempt"
+                  value: ${{ github.run_attempt }}
 
