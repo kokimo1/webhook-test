@@ -20,17 +20,4 @@ jobs:
           sections: |
             -
               activityTitle: "what field is this?"
-              activitySubtitle: "subtitle?"
-              facts:
-                -
-                  name: "destination:"
-                  value: Develop
-                -
-                  name: "origin:"
-                  value: ${{ github.event.issue.title }}
-                -
-                  name: "requestor:"
-                  value: ${{ github.triggering_actor }}
-
-
 
