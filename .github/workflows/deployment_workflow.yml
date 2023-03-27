@@ -26,7 +26,7 @@ jobs:
                   value: ${{ job.status }}
 
                 -
-                  name: "run attempt"
+                  name: "attempts:"
                   value: ${{ github.run_attempt }}
 
           buttons: |
