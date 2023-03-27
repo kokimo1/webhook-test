@@ -19,26 +19,21 @@ jobs:
           title: ${{ github.workflow }}
           message: ${{ github.repository }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
-            View Build 'https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}'
+            View Build https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}
             View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
               activityTitle:
               activitySubtitle:
               facts:
-
                 -
-                  name: "status:"
+                  name: "job status:"
                   value: ${{ job.status }}
-
-                -
-                  name: "env:"
-                  value: ${{ steps.deployment.outputs.env }}
 
                 -
                   name: "deployment id:"
                   value: ${{ steps.deployment.outputs.deployment_id }}
 
                 -
-                  name: "////////"
+                  name: "triggered by"
                   value: ${{ github.triggering_actor }}
