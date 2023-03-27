@@ -30,11 +30,15 @@ jobs:
                   name: "job status:"
                   value: ${{ job.status }}
 
+                -
+                  name: "triggered by"
+                  value: ${{ github.triggering_actor }}
+
 
                 -
                   name: "github event name"
                   value: ${{ github.event_name }}
-
                 -
-                  name: "triggered by"
-                  value: ${{ github.triggering_actor }}
+                  name: "event action"
+                  value: ${{ github.event.action }}
+
