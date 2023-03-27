@@ -4,9 +4,6 @@ on:
   issues:
     types: [ opened, reopened ]
 
-env:
-  color_var: ff9933
-
 jobs:
   notify:
     runs-on: ubuntu-latest
