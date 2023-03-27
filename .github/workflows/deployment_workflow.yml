@@ -23,8 +23,8 @@ jobs:
             View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
-              activityTitle:
-              activitySubtitle:
+              activityTitle: TITLE
+              activitySubtitle: SUBTITLE
               facts:
                 -
                   name: "job status:"
@@ -34,18 +34,9 @@ jobs:
                   name: "triggered by"
                   value: ${{ github.actor }}
 
-
-                -
-                  name: "github event"
-                  value: ${{ github.event }}
-
                 -
                   name: "github event name"
                   value: ${{ github.event_name }}
-
-                -
-                  name: "env"
-                  value: ${{ github.env }}
 
                 -
                   name: "ref name"
