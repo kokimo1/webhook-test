@@ -30,13 +30,10 @@ jobs:
                   name: "job status:"
                   value: ${{ job.status }}
 
-                -
-                  name: "deployment id:"
-                  value: ${{ steps.deployment.outputs.deployment_id }}
 
                 -
                   name: "github event name"
-                  value: ${{ GITHUB_EVENT_NAME }}
+                  value: ${{ github.event_name }}
 
                 -
                   name: "triggered by"
