@@ -17,6 +17,20 @@ jobs:
           buttons: |
             View Feature Request ${{ github.event.issue.html_url }}
             View Project https://github.com/orgs/uic-ts/projects/1
+          sections: |
+            -
+              activityTitle: "what field is this?"
+              activitySubtitle:
+              facts:
+                -
+                  name: "destination:"
+                  value: Develop
+                -
+                  name: "origin:"
+                  value: ${{ github.event.issue.title }}
+                -
+                  name: "requestor:"
+                  value: ${{ github.triggering_actor }}
 
 
 
