@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+    - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: start deployment
+      uses: bobheadxi/deployments@v1
+      id: deployment
+      with:
+        step: start
+        token: ${{ secrets.GITHUB_TOKEN }}
+        env: release
+
+
+    - name: update deployment status
+      uses: bobheadxi/deployments@v1
+      if: always()
+      with:
+        webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
+        step: finish
+        token: ${{ secrets.GITHUB_TOKEN }}
+        status: ${{ job.status }}
+        env: ${{ steps.deployment.outputs.env }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
