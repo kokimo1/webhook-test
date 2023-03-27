@@ -23,9 +23,9 @@ jobs:
               activitySubtitle: "subtitle?"
               facts:
                 -
-                  name: "destination:"
-                  value: Develop
-
-
-
+                  name: "Testing:"
+                  value: "testing"
+                -
+                  name: "origin:"
+                  value: ${{ github.event.issue.title }}
 
