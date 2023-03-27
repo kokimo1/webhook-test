@@ -5,7 +5,7 @@ on:
     branches: [ develop ]
 
 env:
-  color_var: ff69b4
+  color_var: 0be642
 
 jobs:
   notify:
@@ -33,6 +33,10 @@ jobs:
                 -
                   name: "deployment id:"
                   value: ${{ steps.deployment.outputs.deployment_id }}
+
+                -
+                  name: "github event name"
+                  value: ${{ GITHUB_EVENT_NAME }}
 
                 -
                   name: "triggered by"
