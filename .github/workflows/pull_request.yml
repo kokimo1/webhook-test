@@ -19,8 +19,8 @@ jobs:
         with:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
           color: ${{ env.color_var }}
-          title: ${{ github.workflow }}
-          message: ${{ github.repository }}<hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
+          title: ${{ github.workflow }} in ${{ github.repository }}
+          message: <hr style="height:1px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
             View Pull Request ${{ steps.pr-url.outputs.url }}
             View Project https://github.com/orgs/uic-ts/projects/1
@@ -34,7 +34,7 @@ jobs:
                   value: Develop
                 -
                   name: "origin:"
-                  value: ${{ github.red_name }}
+                  value: ${{ github.ref_name }}
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
