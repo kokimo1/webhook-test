@@ -9,6 +9,6 @@ jobs:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@RELEASE_VERSION
+      - uses: actions/add-to-project@latest
         with:
           project-url: https://github.com/orgs/uic-ts/projects/1
