@@ -31,10 +31,11 @@ jobs:
               facts:
                 -
                   name: "destination:"
-                  value: Develop
+                  value: ${{ github.base_ref }}
+
                 -
                   name: "origin:"
-                  value: ${{ github.ref_name }}
+                  value: ${{ github.head_ref }}
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
