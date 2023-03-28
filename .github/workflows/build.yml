@@ -17,18 +17,35 @@ jobs:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
           color: ${{ env.color_var }}
           title: ${{ github.repository }}
-          message: ${{ github.event_name }} to <strong>${{ github.ref_name }}</strong> by <strong>${{ github.actor }}</strong><hr style="height:2px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
+          message: ${{ github.workflow }}<hr style="height:2px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           sections: |
 
             -
               facts:
                 -
+                  name: "action taken:"
+                  value: ${{ github.event_name }}
+
+                -
                   name: "status:"
                   value: ${{ job.status }}
 
                 -
+                  name: "origin:"
+                  value: ${{ job.status }}
+
+                -
+                  name: "target:"
+                  value: ${{ github.ref_name }}
+
+                -
                   name: "attempts:"
                   value: ${{ github.run_attempt }}
+
+                -
+                  name: "requestor:"
+                  value: ${{ github.actor }}
+
 
           buttons: |
             View Build https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}
