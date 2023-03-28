@@ -1,8 +1,11 @@
 blank_issues_enabled: false
 contact_links:
-  - name: GitHub Community Support
-    url: https://github.com/orgs/community/discussions
-    about: Please ask and answer questions here.
-  - name: GitHub Security Bug Bounty
-    url: https://bounty.github.com/
-    about: Please report security vulnerabilities here.
+  - name: STATUS.UIC.EDU
+    url: https://status.uic.edu
+    about: Check status for all online UIC systems
+  - name: RED DEVELOPER DOCUMENTATION
+    url: https://develop.red.uic.edu/
+    about: Codebase documentation for web developers
+  - name: UIC RED WORDPRESS MULTISITE SERVICE
+    url: https://red.uic.edu/
+    about: General information about the Wordpress Multisite service, documentation and support for site administrators

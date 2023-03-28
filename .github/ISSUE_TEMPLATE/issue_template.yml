@@ -1,110 +1,76 @@
-name: Feature Request 1
-description: Request a new feature or an enhancement to an existing one
-title: "[Feature Request]: "
-labels: ["feature-request", "feature-enhancement"]
+name: Issue report
+description: Report an issue, bug, or error message
+title: "[Issue]: "
+labels: ["issue"]
+
 body:
-  - type: markdown
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       Thank you for your submission
+
+  - type: input
+    id: issue-contact-name
     attributes:
-      value: |
-        Thank you for your submission
-  - type: textarea
-    id: request-name
-    attributes:
-      label: Name of this request
-      placeholder: "example: Component for squirrel profiles"
+      label: Your name
+      placeholder: "Your name"
     validations:
       required: true
   - type: input
-    id: contact
+    id: issue-contact-email
     attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. netid@uic.edu
+      label: Your email
+      placeholder: "netid@uic.edu"
     validations:
       required: true
-  - type: dropdown
-    id: dev-status
+  - type: input
+    id: issue-vc-unit
     attributes:
-      label: "Can you contribute to the codebase for this feature?"
-      multiple: false
-      options:
-        - No
-        - Yes
-  - type: textarea
-    id: vc-unit
-    attributes:
-      label: Campus unit
-      description: "Please enter your VC unit or College if applicable"
-    validations:
-      required: true
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: VC Unit/College and your department name
+      placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
     validations:
       required: true
   - type: checkboxes
-    id: use-cases
+    id: issue-list
     attributes:
-      label: What best fits your motivations for this request? Check all that apply.
+      label: Issue
+      description: 'If you select "Other," please describe the issue in the box at the bottom of this form.'
       options:
-        - label: Better marketing and/or branding
+        - label: I can't log in
           required: false
-        - label: Assists with recruitment
+        - label: A page is not displaying correctly
           required: false
-        - label: Improves experience for a site visitor
+        - label: Menu problems
           required: false
-        - label: Improves experience for a WordPress user (site admin, editor, etc)
+        - label: Form problems
           required: false
-        - label: Needed for data collection
+        - label: Other
           required: false
   - type: textarea
-    id: propose-solution
+    id: issue-url
     attributes:
-      label: "Propose a solution"
-    validations:
-      required: true
-  - type: textarea
-    id: who-will-use
-    attributes:
-      label: "Who will use this feature?"
-    validations:
-      required: true
-  - type: textarea
-    id: who-will-benefit
-    attributes:
-      label: "Who benefit from this feature?"
-    validations:
-      required: true
-  - type: textarea
-    id: is-feature-necessary
-    attributes:
-      label: "Is this feature necessary for a particular Red site to function?"
+      label: "The full URL where the issue occurs. E.g.  https://uic.edu"
+      placeholder: "https://uic.edu"
     validations:
       required: true
   - type: checkboxes
-    id: terms
+    id: issue-dev-status
     attributes:
-      label: " This request may involve"
+      label: "Can you contribute to the codebase for this issue?"
       options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
-        - label: Component
+        - label: "Yes"
           required: false
-        - label: Custom Post type
-          required: false
-        - label: Plugin
-          required: false
-        - label: Acquisition of a paid license
-          required: false
-        - label: Other/I don't know
+  - type: checkboxes
+    id: issue-error-message
+    attributes:
+      label: "Do you see an error message?"
+      options:
+        - label: "Yes"
           required: false
   - type: textarea
-    id: provide-links-solutions
+    id: issue-describe-problem
     attributes:
-      label: "Please provide links to similar solutions found on other sites (if applicable)"
+      label: "Describe the problem"
+      description: "To attach files: (1) click in the text box below and (2) drag & drop the file(s) into the box. If you want to submit a screenshot but don't know how, [follow these instructions](https://www.take-a-screenshot.org/)"
     validations:
-      required: false
+      required: true
