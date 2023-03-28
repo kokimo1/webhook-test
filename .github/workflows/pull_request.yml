@@ -34,7 +34,7 @@ jobs:
                   value: Develop
                 -
                   name: "origin:"
-                  value: ${{ github.event.pull_request.title }}
+                  value: ${{ github.red_name }}
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
