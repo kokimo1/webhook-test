@@ -2,7 +2,7 @@ name: 'Pull Request'
 
 on:
   pull_request:
-    branches: [ develop, staging, master ]
+    branches: [ develop ]
 
 env:
   color_var: ff69b4
