@@ -19,6 +19,7 @@ jobs:
           title: ${{ github.repository }}
           message: ${{ github.event_name }} to <strong>${{ github.ref_name }}</strong> by <strong>${{ github.actor }}</strong><hr style="height:2px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           sections: |
+
             -
               facts:
                 -
