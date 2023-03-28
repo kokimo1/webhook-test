@@ -2,7 +2,7 @@ name: 'Pull Request'
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, staging, master ]
 
 env:
   color_var: ff69b4
@@ -20,7 +20,7 @@ jobs:
           webhook: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
           color: ${{ env.color_var }}
           title: ${{ github.workflow }}
-          message: ${{ github.repository }}<hr style="height:2px;margin-top:-5px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
+          message: ${{ github.repository }}<hr style="height:2px;margin-top:7px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">
           buttons: |
             View Pull Request ${{ steps.pr-url.outputs.url }}
             View Project https://github.com/orgs/uic-ts/projects/1
