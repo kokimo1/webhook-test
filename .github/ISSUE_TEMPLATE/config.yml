@@ -3,9 +3,9 @@ contact_links:
   - name: STATUS.UIC.EDU
     url: https://status.uic.edu
     about: Check status for all online UIC systems
-  - name: Red developer documentation
+  - name: RED DEVELOPER DOCUMENTATION
     url: https://develop.red.uic.edu/
     about: Codebase documentation for web developers
-  - name: Red Multsite service
+  - name: UIC RED WORDPRESS MULTISITE SERVICE
     url: https://red.uic.edu/
-    about: General information about the Wordpress Multisite service, User & administrative support
+    about: General information about the Wordpress Multisite service, documentation and support for site administrators
