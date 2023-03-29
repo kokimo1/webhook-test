@@ -2,7 +2,7 @@ name: 'Pull Request'
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, staging, master ]
 
 env:
   color_var: ff69b4
@@ -38,14 +38,6 @@ jobs:
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
-
-
-
-
-
-
-
-
 
 
 
