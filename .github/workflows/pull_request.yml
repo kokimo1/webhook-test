@@ -38,6 +38,3 @@ jobs:
                 -
                   name: "requestor:"
                   value: ${{ github.triggering_actor }}
-
-
-
