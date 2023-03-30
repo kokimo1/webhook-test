@@ -30,11 +30,29 @@ jobs:
               activitySubtitle:
               facts:
                 -
-                  name: "origin:"
+                  name: "Source branch:"
                   value: ${{ github.head_ref }}
                 -
-                  name: "target:"
+                  name: "Target branch:"
                   value: ${{ github.base_ref }}
                 -
-                  name: "requestor:"
+                  name: "Requested by:"
+                  value: ${{ github.triggering_actor }}
+
+
+
+                -
+                  name: "Repo:"
+                  value: ${{ github.repository }}
+                -
+                  name: "Reviewers:"
+                  value: ${{ github.triggering_actor }}
+                -
+                  name: "Labels:"
+                  value: ${{ github.triggering_actor }}
+                -
+                  name: "Files Changed::"
+                  value: ${{ github.triggering_actor }}
+                -
+                  name: "Commits:"
                   value: ${{ github.triggering_actor }}
