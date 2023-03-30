@@ -11,11 +11,6 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Get requested reviewers
-        run: |
-          for reviewer in ${{ github.event.pull_request.requested_reviewers }}; do
-            echo "Reviewer: $reviewer"
-          done
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
@@ -43,10 +38,12 @@ jobs:
                 -
                   name: "Requested by:"
                   value: ${{ github.triggering_actor }}
-
                 -
                   name: "Reviewers:"
-                  value: ${{ github.event.pull_request.requested_reviewers }}
+                  value: |
+                    {% for reviewer in github.event.pull_request.requested_reviewers %}
+                      {{ reviewer.login }}
+                    {% endfor %}
                 -
                   name: "Labels:"
                   value: ${{ github.event.pull_request.labels }}
@@ -56,3 +53,6 @@ jobs:
                 -
                   name: "Commits:"
                   value: ${{ github.event.pull_request.commits }}
+
+
+
