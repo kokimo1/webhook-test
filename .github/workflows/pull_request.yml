@@ -2,7 +2,7 @@ name: 'Pull Request'
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, staging, master ]
 
 env:
   color_var: ff69b4
@@ -30,14 +30,24 @@ jobs:
               activitySubtitle:
               facts:
                 -
-                  name: "origin:"
+                  name: "Source branch:"
                   value: ${{ github.head_ref }}
                 -
-                  name: "target:"
+                  name: "Target branch:"
                   value: ${{ github.base_ref }}
                 -
-                  name: "requestor:"
+                  name: "Requested by:"
                   value: ${{ github.triggering_actor }}
 
-
-
+                -
+                  name: "Reviewers:"
+                  value: ${{ github.event.pull_request.requested_reviewers }}
+                -
+                  name: "Labels:"
+                  value: ${{ github.event.pull_request.labels }}
+                -
+                  name: "Files Changed:"
+                  value: ''
+                -
+                  name: "Commits:"
+                  value: ${{ github.event.pull_request.commits }}
