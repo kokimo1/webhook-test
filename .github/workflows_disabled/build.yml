@@ -2,7 +2,7 @@ name: 'Build status'
 
 on:
   push:
-
+    branches: [ develop, staging, master ]
 
 env:
   color_var: 0be642
