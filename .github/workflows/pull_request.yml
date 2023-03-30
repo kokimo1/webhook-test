@@ -41,9 +41,10 @@ jobs:
                 -
                   name: "Reviewers:"
                   value: |
-                    {% for reviewer in github.event.pull_request.requested_reviewers %}
+                    {% for reviewer in {{ github.event.pull_request.requested_reviewers }} %}
                       {{ reviewer.login }}
                     {% endfor %}
+
                 -
                   name: "Labels:"
                   value: ${{ github.event.pull_request.labels }}
@@ -53,6 +54,3 @@ jobs:
                 -
                   name: "Commits:"
                   value: ${{ github.event.pull_request.commits }}
-
-
-
