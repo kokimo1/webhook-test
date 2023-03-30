@@ -52,10 +52,7 @@ jobs:
                   value: ${{ github.event.pull_request.labels }}
                 -
                   name: "Files Changed:"
-                  value: ''
+                  value: 'TESTING'
                 -
                   name: "Commits:"
                   value: ${{ github.event.pull_request.commits }}
-                -
-                  name: "Commit messages:"
-                  value: ${{ github.event.pull_request.head_commit.message }}
