@@ -54,3 +54,10 @@ jobs:
                 -
                   name: "Commits:"
                   value: ${{ github.event.pull_request.commits }}
+                -
+                  name: "TEST Commits:"
+                  value: |
+                      {% for commit in github.event.pull_request.commits %}
+                        {{ commit.commit.message }} - {{ commit.sha }}
+                      {% endfor %}
+
