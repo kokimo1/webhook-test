@@ -23,6 +23,7 @@ jobs:
           done
           echo "$commit_messages" > commit_messages.txt
         shell: bash
+        working-directory: .
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
