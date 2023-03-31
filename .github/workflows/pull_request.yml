@@ -14,13 +14,14 @@ jobs:
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
-      - name: Display commit messages
+      - name: Get commit messages
         run: |
           commit_messages=""
           for commit in "${{ github.event.pull_request.commits }}"; do
             commit_messages="$commit_messages\n- $commit.commit.message"
           done
-          echo "::set-env name=COMMIT_MESSAGES::$commit_messages"
+          echo "${commit_messages}" | tee commit_messages.txt
+        shell: bash
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -59,7 +60,8 @@ jobs:
                   name: "Files Changed:"
                   value: 'TESTING'
                 -
-                  name: "Commits:"
-                  value: ${{ env.COMMIT_MESSAGES }}
+                  name: "Commit messages:"
+                  value: |
+                    $(cat commit_messages.txt)
 
 
