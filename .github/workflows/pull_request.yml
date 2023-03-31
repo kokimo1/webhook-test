@@ -20,13 +20,16 @@ jobs:
       - name: Get commit messages
         run: |
           commit_messages=""
-          for commit in $(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }});
-          do
+          for commit in $(git log --pretty=format:'%h %s' d68c75c65c447395992b410ea07d8e7c2160857c..6e63b37527add60ea93516335fcda46cafa29fe1); do
             commit_messages="$commit_messages\n- $commit"
           done
           echo "$commit_messages" > commit_messages.txt
-        shell: bash
-        working-directory: .
+        working-directory: ${{ github.workspace }}
+      - name: Show commit messages
+        env:
+          COMMIT_MESSAGES: ${{ steps.extract-commits.outputs.commit-messages }}
+        run: |
+          echo "Commit messages: $COMMIT_MESSAGES"
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
