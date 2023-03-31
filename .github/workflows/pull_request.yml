@@ -17,11 +17,11 @@ jobs:
       - name: Get commit messages
         run: |
           commit_messages=""
-          for commit in "${{ env.COMMIT_MESSAGES }}"; do
-            commit_messages="$commit_messages\n- $commit.commit.message"
+          for commit in $(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }});
+          do
+            commit_messages="$commit_messages\n- $commit"
           done
-          echo "::set-env name=COMMIT_MESSAGES::$commit_messages"
-          echo "Generated commit messages: $commit_messages"
+          echo "$commit_messages" > commit_messages.txt
         shell: bash
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
@@ -62,6 +62,6 @@ jobs:
                   value: 'TESTING'
                 -
                   name: "Commit messages:"
-                  value: '${{ env.COMMIT_MESSAGES }}'
+                  value: $(cat commit_messages.txt)
 
 
