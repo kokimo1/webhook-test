@@ -61,7 +61,6 @@ jobs:
                   value: 'TESTING'
                 -
                   name: "Commit messages:"
-                  value: |
-                    $(cat commit_messages.txt)
+                  value: '${{ env.COMMIT_MESSAGES }}'
 
 
