@@ -16,7 +16,7 @@ jobs:
         uses: ammaratef45/pr-url-action@v1
       - name: List files
         run: |
-          ls -R
+          ls -R /github/workspace
       - name: Get commit messages
         run: |
           commit_messages=""
