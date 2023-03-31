@@ -20,7 +20,8 @@ jobs:
           for commit in "${{ env.COMMIT_MESSAGES }}"; do
             commit_messages="$commit_messages\n- $commit.commit.message"
           done
-          echo "${commit_messages}" | tee commit_messages.txt
+          echo "::set-env name=COMMIT_MESSAGES::$commit_messages"
+          echo "Generated commit messages: $commit_messages"
         shell: bash
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
