@@ -14,6 +14,13 @@ jobs:
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
+      - name: Display commit messages
+        run: |
+          commit_messages=""
+          for commit in "${{ github.event.pull_request.commits }}"; do
+            commit_messages="$commit_messages\n- $commit.commit.message"
+          done
+          echo "::set-env name=COMMIT_MESSAGES::$commit_messages"
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -53,11 +60,6 @@ jobs:
                   value: 'TESTING'
                 -
                   name: "Commits:"
-                  value: ${{ github.event.pull_request.commits }}
-                -
-                  name: "TEST Commits:"
-                  value: |
-                      {% for commit in github.event.pull_request.commits %}
-                        {{ commit.message }} - {{ commit.sha }}
-                      {% endfor %}
+                  value: ${{ env.COMMIT_MESSAGES }}
+
 
