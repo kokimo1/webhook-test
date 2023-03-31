@@ -17,7 +17,7 @@ jobs:
       - name: Get commit messages
         run: |
           commit_messages=""
-          for commit in "${{ github.event.pull_request.commits }}"; do
+          for commit in "${{ env.COMMIT_MESSAGES }}"; do
             commit_messages="$commit_messages\n- $commit.commit.message"
           done
           echo "${commit_messages}" | tee commit_messages.txt
