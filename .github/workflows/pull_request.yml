@@ -29,4 +29,4 @@ jobs:
           summary: "The following commits were made:"
           sections: "
             # Commits
-            ${{ join([ '- ' + commit.commit.message + ' (' + commit.author.name + ')' for commit in github.event.pull_request.commits ], '\n') }}"
+            ${{ join([ '- ' + commit.commit.message + ' (' + commit.author.name + ')' for commit in github.event.pull_request.commits ], '\n') }}
