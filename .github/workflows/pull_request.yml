@@ -9,7 +9,6 @@ env:
 
 jobs:
   notify:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Get Pull Request URL
@@ -20,10 +19,14 @@ jobs:
         run: |
           ls -R $PWD
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Update PR Body
+        uses: EverStarck/pr-timeline-commitizen-commits-list@v1.0
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          github-token: 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
+          owner: EverStarck
+          repo: project
+          pull_number: ${{ github.event.number }}
 
       - name: Get commit messages
         working-directory: ${{ github.workspace }}
