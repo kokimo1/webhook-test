@@ -15,6 +15,13 @@ jobs:
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
 
+      - name: Get PR commits
+        id: pr-commits
+        uses: "julien-guillan/getprcommits@v1.1.0"
+        with:
+          token: "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"
+          per_page: 100
+
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -48,8 +55,6 @@ jobs:
                 -
                   name: "Labels:"
                   value: ${{ github.event.pull_request.labels }}
-
                 -
-                  name: Commit messages:"
-                  value: 'TESTING'
-
+                  name: "Commit messages:"
+                  value: ${{ steps.pr-commits.outputs.commits }}
