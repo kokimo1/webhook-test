@@ -54,10 +54,11 @@ jobs:
                   value: 'NULL'
                 -
                   name: "Commit messages:"
-                  value: |
+                  value: |-
                     {% for commit in github.event.pull_request.commits %}
-                    - {{ commit.commit.message | replace('\n', ' ') }} ({{ commit.author.name }})
+                    {{'- '}} {{ commit.commit.message | replace: '\n', ' ' }} ({{ commit.author.name }}){{'\n'}}
                     {% endfor %}
+
 
 
 
