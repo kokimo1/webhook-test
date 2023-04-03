@@ -8,25 +8,16 @@ env:
   color_var: ff69b4
 
 jobs:
-  notify:
+  notify_teams:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Get Pull Request URL
-        id: pr-url
-        uses: ammaratef45/pr-url-action@v1
-
-      - name: Get PR Commits
-        id: 'get-pr-commits'
-        uses:  kzdjs/pr-commit-messages-action@v1.0.4
-
+      - uses: actions/checkout@v2
       - name: Notify Teams of Commits
         uses: microsoft/teams-notification@v1
         with:
-          webhook-url: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
+          webhook-url: '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'
           title: "New Commits for PR #${{ github.event.pull_request.number }}"
           summary: "The following commits were made:"
           sections: |
             # Commits
-            ${{ join({ '- ' + commit.commit.message + ' (' + commit.author.name + ')' for commit in github.event.pull_request.commits }, '\n') }}
+            ${{ join([ '- ' + commit.commit.message + ' (' + commit.author.name + ')' for commit in github.event.pull_request.commits ], '\n') }}
