@@ -17,7 +17,7 @@ jobs:
 
       - name: Get PR Commits
         id: 'get-pr-commits'
-        uses: Octoherd/get-pr-commits@v1.0.1
+        uses:  kzdjs/pr-commit-messages-action@v1.0.4
         with:
           token: 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
 
