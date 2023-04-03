@@ -33,6 +33,8 @@ jobs:
             View Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
+              activityTitle: "TESTING"
+              activitySubtitle: "test"
               facts:
                 -
                   name: "Source branch:"
