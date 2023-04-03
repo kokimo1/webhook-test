@@ -25,6 +25,7 @@ jobs:
           buttons: |
             View Pull Request ${{ steps.pr-url.outputs.url }}
             View Project https://github.com/orgs/uic-ts/projects/1
+
           sections: |
             -
               activityTitle:
@@ -45,7 +46,6 @@ jobs:
                     [TEST] {% for reviewer in {{ github.event.pull_request.requested_reviewers }} %}
                       {{ reviewer.login }}
                     {% endfor %}
-
                 -
                   name: "Labels:"
                   value: ${{ github.event.pull_request.labels }}
@@ -55,7 +55,8 @@ jobs:
                 -
                   name: "Commit messages:"
                   value: |
-                    ${{ join('\n', github.event.pull_request.commits.*.commit.message) }}
-
+                    {% for commit in github.event.pull_request.commits %}
+                      - {{ commit.commit.message | replace: '\n', ' ' }} ({{ commit.author.name }})
+                    {% endfor %}
 
 
