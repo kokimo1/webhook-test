@@ -19,7 +19,7 @@ jobs:
         id: 'get-pr-commits'
         uses: tim-actions/get-pr-commits@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: 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
 
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
