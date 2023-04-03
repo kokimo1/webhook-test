@@ -21,7 +21,10 @@ jobs:
         run: |
           COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
           echo "Commit messages: $COMMIT_MESSAGES"
-
+      - name: Get commit messages
+        run: |
+          COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          echo "$COMMIT_MESSAGES" > commit_messages.txt
         working-directory: ${{ github.workspace }}
       - name: Show commit messages
         env:
@@ -65,8 +68,11 @@ jobs:
                 -
                   name: "Files Changed:"
                   value: 'TESTING'
-                -
-                  name: "Commit messages:"
-                  value: $(cat commit_messages.txt)
+                - name: Show commit messages
+                  env:
+                    COMMIT_MESSAGES: ${{ steps.get-commit-messages.outputs.commit-messages }}
+                  run: |
+                    echo "Commit messages: $COMMIT_MESSAGES"
+
 
 
