@@ -18,8 +18,6 @@ jobs:
       - name: Get PR Commits
         id: 'get-pr-commits'
         uses:  kzdjs/pr-commit-messages-action@v1.0.4
-        with:
-          token: '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'
 
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
