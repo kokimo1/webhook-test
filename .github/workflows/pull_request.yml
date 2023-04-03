@@ -8,7 +8,7 @@ env:
   color_var: ff69b4
 
 jobs:
-  notify:
+  update-body:
     runs-on: ubuntu-latest
     steps:
       - name: Get Pull Request URL
