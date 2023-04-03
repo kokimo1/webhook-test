@@ -9,6 +9,7 @@ env:
 
 jobs:
   notify:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Get Pull Request URL
