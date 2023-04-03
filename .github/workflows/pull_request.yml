@@ -19,6 +19,9 @@ jobs:
         run: |
           ls -R $PWD
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Get commit messages
         working-directory: ${{ github.workspace }}
         run: |
