@@ -19,11 +19,9 @@ jobs:
           ls -R $PWD
       - name: Get commit messages
         run: |
-          commit_messages=""
-          for commit in $(git log --pretty=format:'%h %s' d68c75c65c447395992b410ea07d8e7c2160857c..6e63b37527add60ea93516335fcda46cafa29fe1); do
-            commit_messages="$commit_messages\n- $commit"
-          done
-          echo "$commit_messages" > commit_messages.txt
+          COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          echo "Commit messages: $COMMIT_MESSAGES"
+
         working-directory: ${{ github.workspace }}
       - name: Show commit messages
         env:
