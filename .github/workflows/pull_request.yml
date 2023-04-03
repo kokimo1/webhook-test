@@ -15,22 +15,16 @@ jobs:
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
       - name: List files
+        working-directory: ${{ github.workspace }}
         run: |
           ls -R $PWD
+
       - name: Get commit messages
-        run: |
-          COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
-          echo "Commit messages: $COMMIT_MESSAGES"
-      - name: Get commit messages
+        working-directory: ${{ github.workspace }}
         run: |
           COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
           echo "$COMMIT_MESSAGES" > commit_messages.txt
-        working-directory: ${{ github.workspace }}
-      - name: Show commit messages
-        env:
-          COMMIT_MESSAGES: ${{ steps.extract-commits.outputs.commit-messages }}
-        run: |
-          echo "Commit messages: $COMMIT_MESSAGES"
+
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
