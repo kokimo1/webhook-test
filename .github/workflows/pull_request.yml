@@ -33,7 +33,7 @@ jobs:
               View PR
               View Project
             additional_button_url: |-
-              '${{ steps.pr-url.outputs.url }}''
+              '${{ steps.pr-url.outputs.url }}'
               https://github.com/orgs/uic-ts/projects/1
             dry_run: false
 
