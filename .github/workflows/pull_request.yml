@@ -7,20 +7,21 @@ on:
 env:
   color_var: ff69b4
 
+
 jobs:
-  update-body:
+  notify:
+    needs: get-pr-commits
     runs-on: ubuntu-latest
     steps:
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
 
-      - name: Get PR commits
-        id: pr-commits
-        uses: "julien-guillan/getprcommits@v1.1.0"
+      - name: Get PR Commits
+        id: 'get-pr-commits'
+        uses: tim-actions/get-pr-commits@master
         with:
           token: "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"
-          per_page: 100
 
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
@@ -32,6 +33,7 @@ jobs:
           buttons: |
             View Pull Request ${{ steps.pr-url.outputs.url }}
             View Project https://github.com/orgs/uic-ts/projects/1
+
           sections: |
             -
               activityTitle:
@@ -49,7 +51,7 @@ jobs:
                 -
                   name: "Reviewers:"
                   value: |
-                    {% for reviewer in {{ github.event.pull_request.requested_reviewers }} %}
+                    {% for reviewer in github.event.pull_request.requested_reviewers %}
                       {{ reviewer.login }}
                     {% endfor %}
                 -
@@ -57,4 +59,7 @@ jobs:
                   value: ${{ github.event.pull_request.labels }}
                 -
                   name: "Commit messages:"
-                  value: ${{ steps.pr-commits.outputs.commits }}
+                  value: |
+                    {% for commit in steps.get-pr-commits.outputs.commits %}
+                      - {{ commit.message }}
+                    {% endfor %}
