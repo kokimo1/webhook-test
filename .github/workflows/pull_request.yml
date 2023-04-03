@@ -26,7 +26,7 @@ jobs:
         with:
           webhook-url: https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
           title: "New Commits for PR #${{ github.event.pull_request.number }}"
-          summary: "[TEST] The following commits were made:"
+          summary: "The following commits were made:"
           sections: |
             # Commits
-            ${{ join(map(github.event.pull_request.commits, '   - ${{.commit.message}} ({{.author.name}})')), '\n') }}
+            ${{ join([for commit in github.event.pull_request.commits: '- ' + commit.commit.message + ' (' + commit.author.name + ')']), '\n' }}
