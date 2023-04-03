@@ -27,7 +27,7 @@ jobs:
       - name: Get commit messages
         working-directory: ${{ github.workspace }}
         run: |
-          COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          COMMIT_MESSAGES=$(git log --pretty=format:'%h %s' ${{ github.event.workflow_run.base_sha }}..${{ github.event.workflow_run.head_sha }})
           echo "$COMMIT_MESSAGES" > commit_messages.txt
 
       - name: 📣 Send teams notification
