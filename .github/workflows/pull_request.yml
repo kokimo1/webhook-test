@@ -13,13 +13,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+
       - name: Get Pull Request URL
         id: pr-url
         uses: ammaratef45/pr-url-action@v1
 
       - name: Get PR Commits
         id: 'get-pr-commits'
-        uses:  kzdjs/pr-commit-messages-action@v1.0.4
+        uses: kzdjs/pr-commit-messages-action@v1.0.4
 
       - name: Notify Teams of Commits
         uses: microsoft/teams-notification@v1
@@ -30,4 +31,4 @@ jobs:
           summary: "The following commits were made:"
           sections: |
             # Commits
-            ${{ join(map(github.event.pull_request.commits, '{0.commit.message} ({0.author.name})'), '\n') }}
+            ${{ reduce(github.event.pull_request.commits, '', 'accumulator', 'commit', "accumulator + '- ' + commit.commit.message + ' (' + commit.author.name + ')' + '\n'") }}
