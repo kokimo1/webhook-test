@@ -17,7 +17,7 @@ jobs:
 
       - name: Get PR Commits
         id: 'get-pr-commits'
-        uses: kzdjs/pr-commit-messages-action@v1.0.4
+        uses:  kzdjs/pr-commit-messages-action@v1.0.4
         with:
           token: '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'
 
@@ -54,13 +54,14 @@ jobs:
                 -
                   name: "Labels:"
                   value: ${{ github.event.pull_request.labels }}
+
                 -
                   name: "Commit messages:"
                   value: |
-                    {% if pull_request.commits %}
-                      {% for commit in pull_request.commits %}
-                        {{ commit.commit.message }} {% if commit.author %} - {{ commit.author.login }}{% endif %}{% if commit.sha %} ({{ commit.sha|truncate(7, True, '') }}){% endif %}<br>
+                    {% if steps.get-pr-commits.outputs.commits is not undefined and steps.get-pr-commits.outputs.commits is not null %}
+                      {% for commit in steps.get-pr-commits.outputs.commits %}
+                        {{ commit.message }}
                       {% endfor %}
                     {% else %}
-                      No commits found
+                      No commits found.
                     {% endif %}
