@@ -62,6 +62,9 @@ jobs:
 
               run: |
                 echo "deploy"
+                echo "::group::My title"
+                echo "Inside group"
+                echo "::endgroup::"
 
 
 
