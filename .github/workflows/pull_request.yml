@@ -1,21 +1,50 @@
-name: 'NULL'
+name: 'Pull Request'
+
+
 on:
   pull_request:
-    types:
-      - opened
-  push:
-    branches:
-      - develop
+    branches: [ develop, staging, master ]
+
 
 jobs:
-  check-commit-message:
-    name: Check Commit Message
+  check_skip_flags:
+    name: Check skip flags
     runs-on: ubuntu-latest
+    outputs:
+      head-commit-message: ${{ steps.get_head_commit_message.outputs.headCommitMsg }}
     steps:
-      - name: Get commit message
-        uses: dotCMS/get-commit-message
+      - name: Get repo
+        uses: actions/checkout@v3
         with:
-          excludeDescription: 'true' # optional: this excludes the description body of a pull request
-          excludeTitle: 'true' # optional: this excludes the title of a pull request
-          checkAllCommitMessages: 'true' # optional: this checks all commits associated with a pull request
-          accessToken: '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' # github access token is only required if checkAllCommitMessages is true
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Print head git commit message
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+        id: get_head_commit_message
+        run: echo "${{ steps.get_head_commit_message.outputs.headCommitMsg }}"
+      - name: Echo all environment variables
+        run: |
+          env
+
+
+
+
+  notify:
+    name: notify
+    runs-on: ubuntu-latest
+    needs: check_skip_flags
+    steps:
+      - name: show commit messages in notification
+        uses: neonidian/teams-notify-build-status@v3
+        with:
+          webhookUrl: | # Send to multiple channels in MS Teams
+            https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
+          title: 'NULL' # Specify a title header
+          titleBackgroundColor: ${{ steps.unitTest.outcome }} # Specify title background color. 'unitTest' is the ID of a step
+          status: ${{ steps.unitTest.outcome }} # Specify what should be displayed in the status label
+          message: "msg test: $ {{ github.event.commits[0].message }}"
+        env: # Enable actor labels and buttons using environment variables
+          SHOULD_DISPLAY_ACTOR_LABEL: false
+          SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
+          SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+
