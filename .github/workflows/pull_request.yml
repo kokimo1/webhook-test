@@ -11,10 +11,6 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Pull Request URL
-        id: pr-url
-        uses: ammaratef45/pr-url-action@v1
-
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -23,7 +19,7 @@ jobs:
           title: '${{ github.workflow }}: ${{ github.repository }}'
           message: '<hr style="height:2px;margin-top:7px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">'
           buttons: |
-            View Pull Request ${{ steps.pr-url.outputs.url }}
+            View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
 
           sections: |
@@ -55,32 +51,10 @@ jobs:
                 -
                   name: "Number of commits in this PR:"
                   value: '${{ github.event.pull_request.commits }}'
-                -
-                  name: "created at"
-                  value: '${{ github.event.pull_request.created_at }}'
-                -
-                  name: "github.event.pull_request._links.html.href"
-                  value: '${{ github.event.pull_request._links.html.href }}'
-                -
-                  name: "github.event.pull_request._links.issue.href"
-                  value: '${{ github.event.pull_request._links.issue.href }}'
-                -
-                  name: "github.event.pull_request._links.review_comment.href"
-                  value: '${{ github.event.pull_request._links.review_comment.href }}'
-                -
-                  name: "github.event.pull_request._links.statuses.href"
-                  value: '${{ github.event.pull_request._links.statuses.href }}'
-                -
-                  name: "github.event.pull_request._links.state.href"
-                  value: '${{ github.event.pull_request._links.state.href }}'
+
                 -
                   name: "test"
-                  value: '${{ github.event.pull_request.commits }}'
-
-
-
-
-
+                  value: '${{ github.event.pull_request.changes.base.ref.from }}'
 
 
 
