@@ -16,7 +16,10 @@ jobs:
       uses: tim-actions/get-pr-commits@master
       with:
         token: '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'
-
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: develop
     - name: Echo all commits
       run: |
         git log --pretty=format:'%h - %s (%an, %ar)' --abbrev-commit
