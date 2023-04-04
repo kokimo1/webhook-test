@@ -20,6 +20,10 @@ jobs:
       - name: Print head git commit message
         id: get_head_commit_message
         run: echo "::set-output name=headCommitMsg::$(git show -s --format=%s)"
+      - name: Echo all environment variables
+        run: |
+          env
+
 
 
 
