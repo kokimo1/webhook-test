@@ -18,6 +18,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Print head git commit message
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
         id: get_head_commit_message
         run: echo "${{ steps.get_head_commit_message.outputs.headCommitMsg }}"
       - name: Echo all environment variables
