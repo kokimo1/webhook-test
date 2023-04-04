@@ -7,28 +7,26 @@ on:
 
 
 jobs:
-  commits_check_job:
+  check_skip_flags:
+    name: Check skip flags
     runs-on: ubuntu-latest
-    name: Commits Check
+    outputs:
+      head-commit-message: ${{ steps.get_head_commit_message.outputs.headCommitMsg }}
     steps:
-    - name: Get PR Commits
-      id: 'get-pr-commits'
-      uses: tim-actions/get-pr-commits@master
-      with:
-        token: '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'
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: develop
-    - name: Echo all commits
-      run: |
-        git log
-
+      - name: Get repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Print head git commit message
+        id: get_head_commit_message
+        run: echo "::set-output name=headCommitMsg::$(git show -s --format=%s)"
 
 
 
   notify:
+    name: notify
     runs-on: ubuntu-latest
+    needs: check_skip_flags
     steps:
       - name: show commit messages in notification
         uses: neonidian/teams-notify-build-status@v3
@@ -43,3 +41,4 @@ jobs:
           SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
           SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+
