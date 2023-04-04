@@ -59,7 +59,7 @@ jobs:
 
 
             - name: deploy
-              if: contains(toJson(github.event.pull_request.labels.*.name), 'deploy')
+
               run: |
                 echo "deploy"
 
