@@ -22,7 +22,7 @@ jobs:
         ref: develop
     - name: Echo all commits
       run: |
-        git log --pretty=format:'%h - %s (%an, %ar)' --abbrev-commit
+        git log
 
 
 
