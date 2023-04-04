@@ -18,21 +18,12 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Print head git commit message
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
         id: get_head_commit_message
-        run: echo "${{ steps.get_head_commit_message.outputs.headCommitMsg }}"
-      - name: Echo all environment variables
-        run: |
-          env
-
-
+        run: echo "::set-output name=headCommitMsg::$(git show -s --format=%s)"
 
 
   notify:
-    name: notify
     runs-on: ubuntu-latest
-    needs: check_skip_flags
     steps:
       - name: show commit messages in notification
         uses: neonidian/teams-notify-build-status@v3
@@ -42,9 +33,8 @@ jobs:
           title: 'NULL' # Specify a title header
           titleBackgroundColor: ${{ steps.unitTest.outcome }} # Specify title background color. 'unitTest' is the ID of a step
           status: ${{ steps.unitTest.outcome }} # Specify what should be displayed in the status label
-          message: "msg test: $ {{ github.event.commits[0].message }}"
+          message: "NULL"
         env: # Enable actor labels and buttons using environment variables
           SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
           SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
-
