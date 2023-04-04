@@ -17,8 +17,8 @@ jobs:
           titleBackgroundColor: ${{ steps.unitTest.outcome }}    # Specify title background color. 'unitTest' is the ID of a step
           status: ${{ steps.unitTest.outcome }}                  # Specify what should be displayed in the status label
           message: >-
-            ' ${{ steps.versioning.outputs.semver }}'
+            'TESTING? ${{ steps.versioning.outputs.semver }}'
         env:                                                     # Enable actor labels and buttons using environment variables
-          SHOULD_DISPLAY_ACTOR_LABEL: true
+          SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
           SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
