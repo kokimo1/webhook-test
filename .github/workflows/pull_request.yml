@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get commit message
-        uses: dotCMS/commit-message-getter@v1
+        uses: dotCMS/get-commit-message@v1
         with:
           excludeDescription: 'true' # optional: this excludes the description body of a pull request
           excludeTitle: 'true' # optional: this excludes the title of a pull request
