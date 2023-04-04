@@ -43,8 +43,11 @@ jobs:
                       {{ reviewer.login }}
                     {% endfor %}
                 -
+                  name: "Req rev:"
+                  value: ${{ github.event.pull_request.requested_reviewers.name }}
+                -
                   name: "Labels:"
-                  value: ${{ github.event.pull_request.base.label }}
+                  value: ${{ github.event.pull_request.labels.name }}
                 -
                   name: "Files Changed:"
                   value: '${{ github.event.pull_request.changed_files }}'
@@ -57,14 +60,6 @@ jobs:
                   value: '${{ github.event.pull_request.changes.base.ref.from }}'
 
 
-
-      - name: deploy
-        if: contains(toJson(github.event.pull_request.labels.*.name), 'deploy')
-        run: |
-          echo "deploy"
-          echo "::group::My title"
-          echo "Inside group"
-          echo "::endgroup::"
 
 
 
