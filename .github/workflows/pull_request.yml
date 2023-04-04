@@ -48,7 +48,7 @@ jobs:
                     {% endfor %}
                 -
                   name: "Labels:"
-                  value: ${{ github.event.pull_request.labels }}
+                  value: ${{ github.event.pull_request.labels.name }}
                 -
                   name: "Files Changed:"
                   value: '${{ github.event.pull_request.changed_files }}'
@@ -59,8 +59,26 @@ jobs:
                   name: "created at"
                   value: '${{ github.event.pull_request.created_at }}'
                 -
-                  name: "github.event.pull_request._links.commits.href"
-                  value: '${{ github.event.pull_request._links.commits.href }}'
+                  name: "github.event.pull_request._links.html.href"
+                  value: '${{ github.event.pull_request._links.html.href }}'
+                -
+                  name: "github.event.pull_request._links.issue.href"
+                  value: '${{ github.event.pull_request._links.issue.href }}'
+                -
+                  name: "github.event.pull_request._links.review_comment.href"
+                  value: '${{ github.event.pull_request._links.review_comment.href }}'
+                -
+                  name: "github.event.pull_request._links.statuses.href"
+                  value: '${{ github.event.pull_request._links.statuses.href }}'
+                -
+                  name: "github.event.pull_request._links.state.href"
+                  value: '${{ github.event.pull_request._links.state.href }}'
+                -
+                  name: "test"
+                  value: '${{ github.event.pull_request.commits }}'
+
+
+
 
 
 
