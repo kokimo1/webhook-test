@@ -47,21 +47,14 @@ jobs:
 
 
                 -
-                  name: "Req rev:"
-                  value: ${{ github.event.pull_request.requested_reviewers.name }}
-                -
-                  name: "Labels:"
-                  value: ${{ github.event.pull_request.labels.name }}
+                  name: "test:"
+                  value: ${{ github.event.pull_request.state }}
                 -
                   name: "Files Changed:"
                   value: '${{ github.event.pull_request.changed_files }}'
                 -
-                  name: "Number of commits in this PR:"
+                  name: "Number of commits:"
                   value: '${{ github.event.pull_request.commits }}'
-
-                -
-                  name: "test"
-                  value: '${{ github.event.pull_request.changes.base.ref.from }}'
 
 
 
