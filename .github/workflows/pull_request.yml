@@ -58,6 +58,10 @@ jobs:
                 -
                   name: "created at"
                   value: '${{ github.event.pull_request.created_at }}'
+                -
+                  name: "github.event.pull_request._links.commits.href"
+                  value: '${{ github.event.pull_request._links.commits.href }}'
+
 
 
 
