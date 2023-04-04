@@ -16,6 +16,11 @@ jobs:
       uses: tim-actions/get-pr-commits@master
       with:
         token: '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'
+    - name: Echo all environment variables
+      run: |
+        env
+
+
 
   notify:
     runs-on: ubuntu-latest
@@ -33,7 +38,3 @@ jobs:
           SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
           SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
-      - name: Echo all environment variables
-        run: |
-          env
-
