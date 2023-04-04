@@ -33,11 +33,7 @@ jobs:
           SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
           SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
-
-
-  echo:
-    runs-on: ubuntu-latest
-    steps:
       - name: Echo all environment variables
         run: |
           env
+
