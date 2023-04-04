@@ -58,13 +58,13 @@ jobs:
 
 
 
-                - name: deploy
-
-                  run: |
-                    echo "deploy"
-                    echo "::group::My title"
-                    echo "Inside group"
-                    echo "::endgroup::"
+      - name: deploy
+        if: contains(github.event.pull_request.labels.*.name, 'deploy')
+        run: |
+          echo "deploy"
+          echo "::group::My title"
+          echo "Inside group"
+          echo "::endgroup::"
 
 
 
