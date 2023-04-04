@@ -16,9 +16,11 @@ jobs:
       uses: tim-actions/get-pr-commits@master
       with:
         token: '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'
-    - name: Echo all environment variables
+
+    - name: Echo all commits
       run: |
-        env
+        git log --pretty=format:'%h - %s (%an, %ar)' --abbrev-commit
+
 
 
 
