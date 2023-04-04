@@ -51,7 +51,16 @@ jobs:
                   value: ${{ github.event.pull_request.labels }}
                 -
                   name: "Files Changed:"
-                  value: '${{ github.event }}'
+                  value: '${{ github.event.changed_files }}'
+                -
+                  name: "Number of commits in this PR:"
+                  value: '${{ github.event.commits }}'
+                -
+                  name: "created at"
+                  value: '${{ github.event.created_at }}'
+
+
+
 
 
 
