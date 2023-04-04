@@ -58,13 +58,13 @@ jobs:
 
 
 
-            - name: deploy
+                - name: deploy
 
-              run: |
-                echo "deploy"
-                echo "::group::My title"
-                echo "Inside group"
-                echo "::endgroup::"
+                  run: |
+                    echo "deploy"
+                    echo "::group::My title"
+                    echo "Inside group"
+                    echo "::endgroup::"
 
 
 
