@@ -19,11 +19,11 @@ jobs:
         with:
           webhookUrl: | # Send to multiple channels in MS Teams
             https://uic365.webhook.office.com/webhookb2/e2758c1c-477f-4de7-b1bd-c8f35fe1d105@e202cd47-7a56-4baa-99e3-e3b71a7c77dd/IncomingWebhook/ef5cd950674649228b1ae1c203a82a2a/68f631fe-fabd-412d-b045-29ece196782a
-          title: 'NULL' # Specify a title header
+          title: '/' # Specify a title header
           titleBackgroundColor: ${{ steps.unitTest.outcome }} # Specify title background color. 'unitTest' is the ID of a step
           status: ${{ steps.unitTest.outcome }} # Specify what should be displayed in the status label
           message: >-
-            'TESTING? ${{ steps.versioning.outputs.semver }}. commit msg:${{ github.event.head_commit.message }}. pr reqhead sha: ${{ github.event.pull_request.head.sha }}. commit msg test1: ${{commit_message}} '
+            '~ ${{ steps.versioning.outputs.semver }}. commit msg:${{ github.event.head_commit.message }}. pr reqhead sha: ${{ github.event.pull_request.head.sha }}. commit msg test1: ${{env.commit_message}} '
         env: # Enable actor labels and buttons using environment variables
           SHOULD_DISPLAY_ACTOR_LABEL: false
           SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
