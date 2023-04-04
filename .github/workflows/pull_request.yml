@@ -44,7 +44,7 @@ jobs:
                     {% endfor %}
                 -
                   name: "Labels:"
-                  value: ${{ github.event.pull_request.labels.name }}
+                  value: ${{ github.event.pull_request.base.label }}
                 -
                   name: "Files Changed:"
                   value: '${{ github.event.pull_request.changed_files }}'
