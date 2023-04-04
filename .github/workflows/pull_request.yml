@@ -38,10 +38,14 @@ jobs:
                   value: ${{ github.triggering_actor }}
                 -
                   name: "Reviewers:"
-                  value: |
-                    {% for reviewer in {{ github.event.pull_request.requested_reviewers }} %}
+                  value: |-
+                    {% for reviewer in github.event.pull_request.requested_reviewers %}
                       {{ reviewer.login }}
                     {% endfor %}
+
+
+
+
                 -
                   name: "Req rev:"
                   value: ${{ github.event.pull_request.requested_reviewers.name }}
