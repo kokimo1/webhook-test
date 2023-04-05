@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set color_var
-        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '00ab2e'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
+        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.color_var }}
           title: ${{ github.workflow }}
-          message: '<hr style="height:2px;margin-top:20px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};">PR status: <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:1px;">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-top:7px;color:#fff;background-color:#${{ env.color_var }};">'
+          message: 'status: <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-top:7px;color:#fff;background-color:#${{ env.color_var }};">'
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
