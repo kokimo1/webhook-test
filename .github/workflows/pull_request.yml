@@ -32,7 +32,7 @@ jobs:
                   value: ${{ github.repository }}
                 -
                   name: "Status:"
-                  value: "<span style=\"color:{{ github.event.pull_request.state == 'closed' ? 'green' : 'red' }};\">${{ github.run_attempt }}</span>"
+                  value: "<span style=\"color:{{ github.event.pull_request.state == 'closed' ? 'green' : 'red' }};\">${{ github.event.pull_request.state }}</span>"
 
                 -
                   name: "Attempts:"
