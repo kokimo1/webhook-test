@@ -29,7 +29,7 @@ jobs:
               facts:
                 -
                   name: "Repo:"
-                  value: ${{ github.repository }}
+                  value: ${{ github.repository }}'<hr style="height:2px;margin-top:7px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};width:120%;">'
                 -
                   name: "Status:"
                   value: "<span style=\"color:${{ env.color_var }};\">${{ github.event.pull_request.state }}</span>"
