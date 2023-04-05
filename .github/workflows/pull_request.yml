@@ -1,16 +1,9 @@
-name: 'Pull Request'
-
-on:
-  pull_request:
-    branches: [ develop, staging, master ]
-
-env:
-  color_var: ff69b4
-
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Set color_var
+        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'open' ]; then echo 'ff0000'; else echo '00ff00'; fi)" >> $GITHUB_ENV
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -21,7 +14,6 @@ jobs:
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
-
           sections: |
             -
               activityTitle:
@@ -35,9 +27,9 @@ jobs:
                   value: ${{ github.event.pull_request.state }}
                   style: |
                     {% if github.event.pull_request.state == 'open' %}
-                      color: red !important;
+                      color: red;
                     {% else %}
-                      color: green !important;
+                      color: green;
                     {% endif %}
                 -
                   name: "PR #:"
@@ -66,4 +58,3 @@ jobs:
                 -
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
-
