@@ -12,8 +12,6 @@ jobs:
       github.event.pull_request.state == 'open' || github.event.pull_request.state == 'closed' || github.event.pull_request.state == 'merged'
     runs-on: ubuntu-latest
     steps:
-      - name: Set color_var
-        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '00ff00'; else echo 'ff0000'; fi)" >> $GITHUB_ENV
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
