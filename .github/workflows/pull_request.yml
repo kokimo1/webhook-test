@@ -17,7 +17,7 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.text_color }}
           title: ${{ github.workflow }}
-          message: '<hr style="height:1px;color:#${{ env.text_color }};background-color:#${{ env.text_color }};">PR status: <div style="color:#ffffff;background-color:purple;!important">${{ github.event.pull_request.state }}</div><hr style="height:2px;margin-top:7px;color:#fff;background-color:#${{ env.text_color }};">'
+          message: '<hr style="height:1px;color:#${{ env.text_color }};background-color:#${{ env.text_color }};">PR status: <span style="color:#ffffff;background-color:purple;!important">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-top:7px;color:#fff;background-color:#${{ env.text_color }};">'
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
