@@ -16,7 +16,7 @@ jobs:
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           title: ${{ github.workflow }}
-          message: '<hr style="height:1px;color:#${{ env.text_color }};background-color:#${{ env.text_color }};">status: <span style="color:#ffffff;background-color:purple !important">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-t;op:7px;color:#fff;background-color:#${{ env.text_color }};">'
+          message: '<hr style="height:1px;color:#${{ env.text_color }};background-color:#${{ env.text_color }};">status: <span style="color:#ffffff;background-color:#${{ env.text_color }};">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-t;op:7px;color:#fff;background-color:#${{ env.text_color }};">'
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
@@ -31,7 +31,6 @@ jobs:
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
-
                 -
                   name: "Source branch:"
                   value: ${{ github.head_ref }}
@@ -41,9 +40,6 @@ jobs:
                 -
                   name: "Requested by:"
                   value: ${{ github.triggering_actor }}
-                -
-                  name: "Run attempts:"
-                  value: ${{ github.run_attempt }}
                 -
                   name: "PR #:"
                   value: ${{ github.event.pull_request.number }}
