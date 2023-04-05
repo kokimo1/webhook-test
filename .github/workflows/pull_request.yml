@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set text_color
-        run: echo "text_color=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '027015'; else echo '7a0417'; fi)" >> $GITHUB_ENV
+        run: echo "text_color=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '027015'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
