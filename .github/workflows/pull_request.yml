@@ -57,7 +57,7 @@ jobs:
 
                 -
                   name: "PR #:"
-                  value: ${{ github.event.pull_request.pull_request_number }}
+                  value: ${{ github.event.pull_request.number }}
 
 
 
