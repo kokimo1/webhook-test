@@ -35,9 +35,9 @@ jobs:
                   value: ${{ github.event.pull_request.state }}
                   style: |
                     {% if github.event.pull_request.state == 'open' %}
-                      color: red;
+                      color: red !important;
                     {% else %}
-                      color: green;
+                      color: green !important;
                     {% endif %}
                 -
                   name: "PR #:"
