@@ -32,7 +32,7 @@ jobs:
                   value: ${{ github.repository }}
                 -
                   name: "Status:"
-                  value: '<span style="color: {{ github.event.pull_request.state == 'closed' ? "green" : "red" }}">${{ github.run_attempt }}</span>'
+                  value: "<span style="color: {{ github.event.pull_request.state == 'closed' ? "green" : "red" }}">${{ github.run_attempt }}</span>"
 
                 -
                   name: "Attempts:"
@@ -51,10 +51,10 @@ jobs:
                   value: ${{ github.triggering_actor }}
                 -
                   name: "Reviewers:"
-                  value: '
+                  value: "
                     {% for reviewer in github.event.pull_request.requested_reviewers %}
                       {{ reviewer.login }}
-                    {% endfor %}'
+                    {% endfor %}"
                 -
                   name: "Files changed:"
                   value: ${{ github.event.pull_request.changed_files }}
