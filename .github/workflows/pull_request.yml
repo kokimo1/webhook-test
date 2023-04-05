@@ -34,7 +34,7 @@ jobs:
                   value: "`${{ github.event.pull_request.state }}`"
                 -
                   name: "Review status:"
-                  value: "${{ github.event.pull_request_review.state }}`"
+                  value: "${{ github.event.pull_request_review.state }}"
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
