@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set color_var
-        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'open' ]; then echo 'ff0000'; else echo '00ff00'; fi)" >> $GITHUB_ENV
+        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '00ff00'; else echo 'ff0000'; fi)" >> $GITHUB_ENV
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -32,7 +32,8 @@ jobs:
                   value: ${{ github.repository }}
                 -
                   name: "Status:"
-                  value: <span style="background-color:${{ env.color_var }};color:white;">${{ github.event.pull_request.state }}</span>
+                  value: '<span style="color: {{ github.event.pull_request.state == 'closed' ? "green" : "red" }}">${{ github.run_attempt }}</span>'
+
                 -
                   name: "Attempts:"
                   value: ${{ github.run_attempt }}
