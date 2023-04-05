@@ -1,4 +1,4 @@
-name: 'Pull Request'
+name: 'testing'
 
 on:
   pull_request:
@@ -32,16 +32,10 @@ jobs:
                   value: ${{ github.repository }}
                 -
                   name: "Status:"
-                  value: ${{ github.event.pull_request.state }}
-                  style: |
-                    {% if github.event.pull_request.state == 'open' %}
-                      <h1>test</h1>
-                    {% else %}
-                      color: green;
-                    {% endif %}
+                  value: <span style="background-color:${{ env.color_var }};color:white;">${{ github.event.pull_request.state }}</span>
                 -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
+                  name: "Attempts:"
+                  value: ${{ github.run_attempt }}
                 -
                   name: "Source branch:"
                   value: ${{ github.head_ref }}
@@ -49,11 +43,11 @@ jobs:
                   name: "Target branch:"
                   value: ${{ github.base_ref }}
                 -
+                  name: "PR #:"
+                  value: ${{ github.event.pull_request.number }}
+                -
                   name: "Requested by:"
                   value: ${{ github.triggering_actor }}
-                -
-                  name: "Attempts:"
-                  value: ${{ github.run_attempt }}
                 -
                   name: "Reviewers:"
                   value: '
