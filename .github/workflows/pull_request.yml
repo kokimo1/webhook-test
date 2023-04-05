@@ -1,13 +1,15 @@
-name: 'testing'
+name: 'Pull Request'
 
 on:
   pull_request:
-    branches: [ develop, staging, master ]
+    branches: [ develop ]
 
 
 
 jobs:
   notify:
+    if: >
+      "github.event.pull_request.state == 'open' || 'closed' || 'merged' "
     runs-on: ubuntu-latest
     steps:
       - name: Set color_var
@@ -28,14 +30,13 @@ jobs:
               activitySubtitle:
               facts:
                 -
-                  name: "Repo:"
-                  value: ${{ github.repository }}<hr style="height:2px;margin-top:7px;color:#${{ env.color_var }};background-color:#${{ env.color_var }};width:120%;">
-                -
                   name: "Status:"
                   value: "`${{ github.event.pull_request.state }}`"
-
                 -
-                  name: "Attempts:"
+                  name: "Repo:"
+                  value: ${{ github.repository }}
+                -
+                  name: "Run attempts:"
                   value: ${{ github.run_attempt }}
                 -
                   name: "Source branch:"
