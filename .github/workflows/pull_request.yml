@@ -28,11 +28,14 @@ jobs:
               activitySubtitle:
               facts:
                 -
+                  name: "Repo:"
+                  value: ${{ github.repository }}
+                -
                   name: "Status:"
                   value: ${{ github.event.pull_request.state }}
                 -
-                  name: "Repo:"
-                  value: ${{ github.repository }}
+                  name: "PR #:"
+                  value: ${{ github.event.pull_request.number }}
                 -
                   name: "Source branch:"
                   value: ${{ github.head_ref }}
@@ -43,11 +46,14 @@ jobs:
                   name: "Requested by:"
                   value: ${{ github.triggering_actor }}
                 -
+                  name: "Attempts:"
+                  value: ${{ github.run_attempt }}
+                -
                   name: "Reviewers:"
-                  value: |-
+                  value: '
                     {% for reviewer in github.event.pull_request.requested_reviewers %}
                       {{ reviewer.login }}
-                    {% endfor %}
+                    {% endfor %}'
                 -
                   name: "Files changed:"
                   value: ${{ github.event.pull_request.changed_files }}
@@ -55,9 +61,6 @@ jobs:
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
 
-                -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
 
 
 
