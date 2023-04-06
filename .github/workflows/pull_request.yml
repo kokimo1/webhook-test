@@ -18,15 +18,15 @@ jobs:
           color: ${{ env.color_var }}
           title: ${{ github.workflow }}
           message: |
-            'status: 
+            status: 
             <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
               ${{ github.event.pull_request.state }}
             </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">'
+            <hr style="height:1px;margin-top:7px;noshade;
+            background-color:#${{ env.color_var }};">
           buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href  }}
-            View Project https://github.com/orgs/uic-ts/projects/1
+            View Pull Request ${{ github.event.pull_request._links.html.href }}
+            View org Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
               activityTitle:
