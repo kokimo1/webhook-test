@@ -47,7 +47,7 @@ jobs:
               facts:
                 -
                   name: "testing"
-                  if: github.event.pull_request.merged
+                  if: ${{ github.event.pull_request.merged }}
                   value: "Merged"
                   else:
                     value: "not merged"
