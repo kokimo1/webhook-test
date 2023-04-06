@@ -11,6 +11,19 @@ jobs:
     steps:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
+
+      - name: Send Teams notification for merged PR
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          MESSAGE_TEXT: "PR #${{ env.PR_NUMBER }} has been merged?"
+        if: github.event.pull_request.merged == true
+        run: |
+          curl -H "Content-Type: application/json" \
+              -d "{\"text\": \"${{ env.MESSAGE_TEXT }}\"}" \
+              "$TEAMS_WEBHOOK_URL"
+
+
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -22,7 +35,7 @@ jobs:
             <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
               ${{ github.event.pull_request.state }}
             </span>
-            <hr style="height:1px;margin-top:7px;noshade;
+            <hr style="height:2px;margin-top:7px;noshade;
             background-color:#${{ env.color_var }};">
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
@@ -32,6 +45,9 @@ jobs:
               activityTitle:
               activitySubtitle:
               facts:
+                -
+                  name: "testing"
+                  value: ${{ env.MESSAGE_TEXT }}
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
