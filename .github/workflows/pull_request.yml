@@ -3,7 +3,7 @@ name: 'Pull Request'
 on:
   pull_request:
     branches: [ develop ]
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, closed]
 
 jobs:
   notify:
@@ -17,7 +17,13 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.color_var }}
           title: ${{ github.workflow }}
-          message: 'status: <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">${{ github.event.pull_request.state }}</span><hr style="height:2px;margin-top:7px;background-color:#${{ env.color_var }};">'
+          message: |
+            'status: 
+            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
+              ${{ github.event.pull_request.state }}
+            </span>
+            <hr style="height:2px;margin-top:7px;noshade;
+            background-color:#${{ env.color_var }};">'
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href  }}
             View Project https://github.com/orgs/uic-ts/projects/1
@@ -36,14 +42,14 @@ jobs:
                   name: "Target branch:"
                   value: ${{ github.base_ref }}
                 -
-                  name: "Requested by:"
+                  name: "Author:"
                   value: ${{ github.triggering_actor }}
                 -
                   name: "PR #:"
                   value: ${{ github.event.pull_request.number }}
                 -
                   name: "Review status:"
-                  value: "`${{ github.event.pull_request_review.state }}`"
+                  value: "${{ github.event.pull_request_review.state }}"
                 -
                   name: "Reviewers:"
                   value: "
