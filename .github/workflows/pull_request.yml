@@ -13,6 +13,7 @@ jobs:
 
   notify:
     runs-on: ubuntu-latest
+    needs: [ set-color ]
     steps:
       - name: Merge request check
         env:
@@ -27,6 +28,9 @@ jobs:
 
       - name: 📣 Send teams notification
         uses: simbo/msteams-message-card-action@latest
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          color_var: ${{ env.color_var }}
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.color_var }}
