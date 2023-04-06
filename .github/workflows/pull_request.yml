@@ -8,7 +8,6 @@ on:
 jobs:
   send-teams-notification:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
