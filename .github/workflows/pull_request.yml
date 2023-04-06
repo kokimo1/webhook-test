@@ -21,7 +21,7 @@ jobs:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           MESSAGE_TEXT: "PR #${{ env.PR_NUMBER }} has been merged?"
-        if: github.event.pull_request.merged == true
+        if: "github.event.pull_request.merged == true"
         run: |
           curl -H "Content-Type: application/json" \
               -d "{\"text\": \"${{ env.MESSAGE_TEXT }}\"}" \
