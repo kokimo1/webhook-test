@@ -59,7 +59,7 @@ jobs:
                   value: ${{ env.CONDITION_TEXT }}
                 -
                   name: "Repo:"
-                  value: ${{ github.repository }}
+                  value: ${{ github.event.pull_request.merged }}
                 -
                   name: "Source branch:"
                   value: ${{ github.head_ref }}
