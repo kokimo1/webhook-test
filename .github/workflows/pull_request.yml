@@ -13,7 +13,7 @@ jobs:
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '003b99'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
 
       - name: 📣 Send teams notification for OPENED pull request
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        if: github.event.action == 'opened'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
@@ -58,7 +58,7 @@ jobs:
 
 
       - name: 📣 Send teams notification for MERGED pull request
-        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+        if: github.event.pull_request.merged == true
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
@@ -105,7 +105,7 @@ jobs:
 
 
       - name: 📣 Send teams notification for CLOSED pull request
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
+        if: github.event.action == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
