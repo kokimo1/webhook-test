@@ -47,7 +47,10 @@ jobs:
               facts:
                 -
                   name: "testing"
-                  value: ${{ env.CONDITION_TEXT }}
+                  if: github.event.pull_request.merged
+                  value: "Merged""
+                  else:
+                    value: "not merged"
                 -
                   name: "Repo:"
                   value: "${{ github.event.pull_request.base.repo.full_name }}"
