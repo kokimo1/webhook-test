@@ -11,7 +11,25 @@ jobs:
     steps:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
+
+
+
+      - name: 🎉 Notify on merge
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
+        uses: simbo/msteams-message-card-action@latest
+        env:
+          MY_SPECIAL_BUTTON: "Special Button https://this-is-so.special/"
+        with:
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          title: Pull Request merged!
+          message: <p>The pull request ${github.event.pull_request.number} has been merged.</p>
+          color: 00ff00
+          buttons: |
+            ${{ env.MY_SPECIAL_BUTTON }}
+
+
       - name: 📣 Send teams notification
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
@@ -34,7 +52,7 @@ jobs:
               facts:
                 -
                   name: "MERGE STATUS"
-                  value: ${{ env.MESSAGE_TEXT }}
+                  value: "NOT MERGED"
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
