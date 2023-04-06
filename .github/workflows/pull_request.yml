@@ -52,7 +52,7 @@ jobs:
               facts:
                 -
                   name: "MERGE STATUS"
-                  value: "NOT MERGED"
+                  value: "MERGED"
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
