@@ -12,7 +12,7 @@ jobs:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
 
-      - name: 📣 Send teams notification for opened pull request that was not merged
+      - name: 📣 Send teams notification for OPENED pull request
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -59,7 +59,8 @@ jobs:
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
 
-      - name: 📣 Send teams notification for closed and merged pull request
+
+      - name: 📣 Send teams notification for MERGED pull request
         if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
         uses: simbo/msteams-message-card-action@latest
         with:
@@ -85,4 +86,70 @@ jobs:
                   name: "MERGE STATUS"
                   value: "MERGED"
                 -
-                 
+                  name: "Repo:"
+                  value: ${{ github.repository }}
+                -
+                  name: "Source branch:"
+                  value: ${{ github.head_ref }}
+                -
+                  name: "Target branch:"
+                  value: ${{ github.base_ref }}
+                -
+                  name: "Author:"
+                  value: ${{ github.triggering_actor }}
+                -
+                  name: "PR #:"
+                  value: ${{ github.event.pull_request.number }}
+                -
+                  name: "Review status:"
+                  value: "${{ github.event.pull_request_review.state }}"
+                -
+                  name: "Commits in this PR:"
+                  value: ${{ github.event.pull_request.commits }}
+
+
+
+
+      - name: 📣 Send teams notification for CLOSED pull request
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        uses: simbo/msteams-message-card-action@latest
+        with:
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          color: ${{ env.color_var }}
+          title: ${{ github.workflow }}
+          message: |
+            status: 
+            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
+              ${{ github.event.pull_request.state }}
+            </span>
+            <hr style="height:2px;margin-top:7px;noshade;
+            background-color:#${{ env.color_var }};">
+          buttons: |
+            View Pull Request ${{ github.event.pull_request._links.html.href }}
+            View org Project https://github.com/orgs/uic-ts/projects/1
+          sections: |
+            -
+              activityTitle:
+              activitySubtitle:
+              facts:
+                -
+                  name: "Repo:"
+                  value: ${{ github.repository }}
+                -
+                  name: "Source branch:"
+                  value: ${{ github.head_ref }}
+                -
+                  name: "Target branch:"
+                  value: ${{ github.base_ref }}
+                -
+                  name: "Author:"
+                  value: ${{ github.triggering_actor }}
+                -
+                  name: "PR #:"
+                  value: ${{ github.event.pull_request.number }}
+                -
+                  name: "Review status:"
+                  value: "${{ github.event.pull_request_review.state }}"
+                -
+                  name: "Commits in this PR:"
+                  value: ${{ github.event.pull_request.commits }}
