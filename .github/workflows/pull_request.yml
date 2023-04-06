@@ -18,7 +18,7 @@ jobs:
         env:
           MY_AWESOME_BUTTON: Awesome http://this-is-so.awesome/
         with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK }}
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           title: NULL
           message: <p>This is my <strong>awesome message!</strong></p>
           color: ff69b4
