@@ -62,7 +62,7 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
+          color: '#019128'
           title: ${{ github.workflow }}
           message: |
             status: 
