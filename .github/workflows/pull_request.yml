@@ -68,7 +68,8 @@ jobs:
                   value: |
                       ${{ env.MESSAGE_TEXT }}
                   else:
-                  "TEST"
+                    value: |
+                    "TEST"
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
