@@ -19,12 +19,12 @@ jobs:
           MY_AWESOME_BUTTON: Awesome http://this-is-so.awesome/
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          title: NULL
-          message: <p>This is my <strong>awesome message!</strong></p>
+          title: 'NULL'
+          message: 'NULL'
           color: ff69b4
           buttons: |
-            NULL https://whatever.com/foo/
-            NULL https://somewhere.com/bar/
+            'NULL' https://whatever.com/foo/
+            'NULL' https://somewhere.com/bar/
             This button will not be shown as it has no target URL
             https://no-label-no-button.com/
             ${{ env.MY_SPECIAL_BUTTON }}
@@ -36,7 +36,7 @@ jobs:
         env:
           MY_SPECIAL_BUTTON: "Special Button https://this-is-so.special/"
         with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK }}
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           title: Pull Request merged!
           message: <p>The pull request ${github.event.pull_request.number} has been merged.</p>
           color: 00ff00
