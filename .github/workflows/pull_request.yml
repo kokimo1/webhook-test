@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [ develop ]
     types: [opened, reopened, closed]
+
 jobs:
   set-color:
     runs-on: ubuntu-latest
@@ -42,7 +43,9 @@ jobs:
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
             background-color:#${{ env.color_var }};">
-            ${{ env.MESSAGE_TEXT }}
+            {% if github.event.pull_request.merged == true %}
+              ${{ env.MESSAGE_TEXT }}
+            {% endif %}
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
