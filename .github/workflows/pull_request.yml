@@ -53,8 +53,14 @@ jobs:
             View org Project https://github.com/orgs/uic-ts/projects/1
           sections: |
             -
-              activityTitle:
-              activitySubtitle:
+              activityTitle: |
+                    "{% if github.event.pull_request.merged == true %}
+                      ${{ env.MESSAGE_TEXT }}
+                    {% endif %}"
+              activitySubtitle: |
+                    "{% if github.event.pull_request.merged == true %}
+                      ${{ env.MESSAGE_TEXT }}
+                    {% endif %}"
               facts:
                 -
                   name: "testing"
