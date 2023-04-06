@@ -22,7 +22,8 @@ jobs:
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color_var: ${{ env.color_var }}
-          MESSAGE_TEXT: ${{ github.event.pull_request.merged == true && "MERGED" || "NOT MERGED" }}
+          MESSAGE_TEXT: "MERGED"
+          CONDITION_TEXT: ${{ github.event.pull_request.merged == true && env.MESSAGE_TEXT || 'NOT MERGED' }}
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.color_var }}
@@ -55,7 +56,7 @@ jobs:
               facts:
                 -
                   name: "testing"
-                  value: ${{ env.MESSAGE_TEXT }}
+                  value: ${{ env.CONDITION_TEXT }}
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
