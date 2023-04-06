@@ -31,7 +31,7 @@ jobs:
             ${{ env.MY_AWESOME_BUTTON }}
 
       - name: 🎉 Notify on merge
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         env:
           MY_SPECIAL_BUTTON: "Special Button https://this-is-so.special/"
