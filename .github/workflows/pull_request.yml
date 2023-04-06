@@ -12,7 +12,7 @@ jobs:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
 
-      - name: 📣 Send teams notification for closed pull request that was not merged
+      - name: 📣 Send teams notification for opened pull request that was not merged
         if: github.event_name == 'pull_request' && github.event.action == 'opened' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
