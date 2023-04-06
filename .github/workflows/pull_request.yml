@@ -65,7 +65,7 @@ jobs:
               facts:
                 -
                   name: "testing"
-                      ${{ env.MESSAGE_TEXT }}
+                  value: ${{ env.MESSAGE_TEXT }}
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
