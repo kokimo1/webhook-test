@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set color_var
-        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
+        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '0018cf'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
 
       - name: 📣 Send teams notification for OPENED pull request
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
@@ -34,9 +34,6 @@ jobs:
               activityTitle:
               activitySubtitle:
               facts:
-                -
-                  name: "MERGE STATUS"
-                  value: "NOT MERGED"
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
@@ -70,7 +67,7 @@ jobs:
           message: |
             status: 
             <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
-              ${{ github.event.pull_request.state }}
+              MERGED
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
             background-color:#${{ env.color_var }};">
@@ -111,7 +108,7 @@ jobs:
 
 
       - name: 📣 Send teams notification for CLOSED pull request
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
