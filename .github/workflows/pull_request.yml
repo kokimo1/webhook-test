@@ -5,13 +5,16 @@ on:
     branches: [ develop ]
     types: [opened, reopened, closed]
 jobs:
-  notify:
+  set-color:
     runs-on: ubuntu-latest
     steps:
       - name: Set color_var
         run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '019128'; else echo 'ad020a'; fi)" >> $GITHUB_ENV
 
-      - name: Send Teams notification for merged PR
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge request check
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
