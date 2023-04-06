@@ -58,9 +58,10 @@ jobs:
               facts:
                 -
                   name: "testing"
-                  value:             "{% if github.event.pull_request.merged == true %}
-              ${{ env.MESSAGE_TEXT }}
-            {% endif %}"
+                  value: |
+                    {% if github.event.pull_request.merged == true %}
+                      ${{ env.MESSAGE_TEXT }}
+                    {% endif %}
                 -
                   name: "Repo:"
                   value: ${{ github.repository }}
