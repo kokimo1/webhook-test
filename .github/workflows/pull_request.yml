@@ -27,12 +27,11 @@ jobs:
 
 
 
-
-      - name: 📣 Send teams notification for OPENED pull request
+      - name: Send teams notification for ⭐OPENED⭐ pull request
         if: github.event.pull_request.state == 'open'
         uses: simbo/msteams-message-card-action@latest
         with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
           message: |
@@ -73,13 +72,11 @@ jobs:
                   value: ${{ github.event.pull_request.commits }}
 
 
-
-
-      - name: 📣 Send teams notification for CLOSED pull request
+      - name: Send teams notification for ⭐CLOSED⭐ pull request
         if: github.event.pull_request.state == 'closed'
         uses: simbo/msteams-message-card-action@latest
         with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
           message: |
@@ -120,14 +117,11 @@ jobs:
                   value: ${{ github.event.pull_request.commits }}
 
 
-
-
-
-      - name: 📣 Send teams notification for MERGED pull request
+      - name: Send teams notification for ⭐MERGED⭐ pull request
         if: github.event.pull_request.merged == 'true'
         uses: simbo/msteams-message-card-action@latest
         with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
           message: |
