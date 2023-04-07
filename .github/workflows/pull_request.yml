@@ -1,3 +1,11 @@
+name: 'Pull Request'
+
+on:
+  pull_request:
+    branches: [ develop ]
+    types: [opened, reopened, closed]
+
+
 jobs:
   notify:
     runs-on: ubuntu-latest
