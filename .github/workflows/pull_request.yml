@@ -7,26 +7,25 @@ on:
 
 jobs:
   notify:
+    env:
+      COLOR_OPENED: 019128
+      COLOR_MERGED: 5a00ba
+      COLOR_CLOSED: ad020a
     runs-on: ubuntu-latest
     steps:
-      - name: Set color_var
-        run: echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] && [ ${{ github.event.pull_request.merged }} == false ]; then echo '003b99'; elif [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo 'ad020a'; else echo '019128'; fi)" >>    $GITHUB_ENV
-
-
       - name: 📣 Send teams notification for OPENED pull request
         if: github.event.action == 'opened'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
           title: ${{ github.workflow }}
           message: |
             status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
+            <span style="color:#ffffff;background-color:#${{ env.COLOR_OPENED }};padding:3px;">
               ${{ github.event.pull_request.state }}
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
+            background-color:#${{ env.COLOR_OPENED }};">
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
@@ -63,15 +62,14 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
           title: ${{ github.workflow }}
           message: |
             status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
+            <span style="color:#ffffff;background-color:#${{ env.COLOR_MERGED }};padding:3px;">
               MERGED
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
+            background-color:#${{ env.COLOR_MERGED }};">
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
@@ -110,15 +108,14 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
           title: ${{ github.workflow }}
           message: |
             status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
+            <span style="color:#ffffff;background-color:#${{ env.COLOR_CLOSED }};padding:3px;">
               ${{ github.event.pull_request.state }}
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
+            background-color:#${{ env.COLOR_CLOSED }};">
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
