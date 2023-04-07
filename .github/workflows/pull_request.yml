@@ -9,24 +9,31 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Set color_var
+      - name: Color variable conditions
         run: |
-          echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] && [ ${{ github.event.pull_request.merged }} == false ]; then echo 'ad020a'; else if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo '5a00ba'; else echo '019128'; fi; fi)" >> $GITHUB_ENV;
+          if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
+            echo "STATUS_COLOR=019128" >> $GITHUB_ENV
+            echo "GREEN"
+          fi
+          if [[ "${{ github.event.pull_request.state }}" == "closed" ]]; then
+            echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
+            echo "RED"
+          fi
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
+            echo "PURPLE"
+          fi
+          echo "::set-env name=MESSAGE_TEXT::status: <span style=\"color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;\">${{ github.event.pull_request.merged && 'MERGED' || github.event.pull_request.state }}</span><hr style=\"height:2px;margin-top:7px;noshade;background-color:#${{ env.STATUS_COLOR }};\">"
 
-      - name: 📣 Send teams notification for OPENED pull request
+
+      - name: 📣 Send teams notification for  pull request
         if: github.event.action == 'opened'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
+          color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
-          message: |
-            status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
-              ${{ github.event.pull_request.state }}
-            </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
+          message: ${{ env.MESSAGE_TEXT }}
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
@@ -56,89 +63,5 @@ jobs:
                 -
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
-      - name: 📣 Send teams notification for MERGED pull request
-        if: github.event.pull_request.merged == true
-        uses: simbo/msteams-message-card-action@latest
-        with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
-          title: ${{ github.workflow }}
-          message: |
-            status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
-              MERGED
-            </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
-          buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href }}
-            View org Project https://github.com/orgs/uic-ts/projects/1
-          sections: |
-            -
-              activityTitle:
-              activitySubtitle:
-              facts:
-                -
-                  name: "Repo:"
-                  value: ${{ github.repository }}
-                -
-                  name: "Source branch:"
-                  value: ${{ github.head_ref }}
-                -
-                  name: "Target branch:"
-                  value: ${{ github.base_ref }}
-                -
-                  name: "Author:"
-                  value: ${{ github.triggering_actor }}
-                -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
-                -
-                  name: "Review status:"
-                  value: "${{ github.event.pull_request_review.state }}"
-                -
-                  name: "Commits in this PR:"
-                  value: ${{ github.event.pull_request.commits }}
-      - name: 📣 Send teams notification for CLOSED pull request
-        if: github.event.action == 'closed' && github.event.pull_request.merged == false
-        uses: simbo/msteams-message-card-action@latest
-        with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.color_var }}
-          title: ${{ github.workflow }}
-          message: |
-            status: 
-            <span style="color:#ffffff;background-color:#${{ env.color_var }};padding:3px;">
-              ${{ github.event.pull_request.state }}
-            </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.color_var }};">
-          buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href }}
-            View org Project https://github.com/orgs/uic-ts/projects/1
-          sections: |
-            -
-              activityTitle:
-              activitySubtitle:
-              facts:
-                -
-                  name: "Repo:"
-                  value: ${{ github.repository }}
-                -
-                  name: "Source branch:"
-                  value: ${{ github.head_ref }}
-                -
-                  name: "Target branch:"
-                  value: ${{ github.base_ref }}
-                -
-                  name: "Author:"
-                  value: ${{ github.triggering_actor }}
-                -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
-                -
-                  name: "Review status:"
-                  value: "${{ github.event.pull_request_review.state }}"
-                -
-                  name: "Commits in this PR:"
-                  value: ${{ github.event.pull_request.commits }}
+
+
