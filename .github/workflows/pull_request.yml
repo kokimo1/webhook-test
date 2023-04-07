@@ -5,50 +5,54 @@ on:
     branches: [develop]
     types: [opened, reopened, closed]
 
+
+
+env:
+  STATUS_COLOR: ''
+  SECTION_CONTENT: |
+    -
+      activityTitle:
+      activitySubtitle:
+      facts:
+        -
+          name: "Repo:"
+          value: ${{ github.repository }}
+        -
+          name: "Source branch:"
+          value: ${{ github.head_ref }}
+        -
+          name: "Target branch:"
+          value: ${{ github.base_ref }}
+        -
+          name: "Author:"
+          value: ${{ github.triggering_actor }}
+        -
+          name: "PR #:"
+          value: ${{ github.event.pull_request.number }}
+        -
+          name: "Review status:"
+          value: "${{ github.event.pull_request_review.state }}"
+        -
+          name: "Commits in this PR:"
+          value: ${{ github.event.pull_request.commits }}
+
+  MESSAGE_CONTENT: |
+    status:
+    <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
+      ${{ github.event.pull_request.state }}
+    </span>
+    <hr style="height:2px;margin-top:7px;noshade;
+    background-color:#${{ env.STATUS_COLOR }};">
+
+  BUTTONS_CONTENT: |
+    View Pull Request ${{ github.event.pull_request._links.html.href }}
+    View org Project https://github.com/orgs/uic-ts/projects/1
+
+
+
 jobs:
   notify:
     runs-on: ubuntu-latest
-
-    env:
-      STATUS_COLOR: ''
-      SECTION_CONTENT: |
-        -
-          activityTitle:
-          activitySubtitle:
-          facts:
-            -
-              name: "Repo:"
-              value: ${{ github.repository }}
-            -
-              name: "Source branch:"
-              value: ${{ github.head_ref }}
-            -
-              name: "Target branch:"
-              value: ${{ github.base_ref }}
-            -
-              name: "Author:"
-              value: ${{ github.triggering_actor }}
-            -
-              name: "PR #:"
-              value: ${{ github.event.pull_request.number }}
-            -
-              name: "Review status:"
-              value: "${{ github.event.pull_request_review.state }}"
-            -
-              name: "Commits in this PR:"
-              value: ${{ github.event.pull_request.commits }}
-      MESSAGE_CONTENT: |
-        status:
-        <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-          ${{ github.event.pull_request.state }}
-        </span>
-        <hr style="height:2px;margin-top:7px;noshade;
-        background-color:#${{ env.STATUS_COLOR }};">
-      BUTTONS_CONTENT: |
-        View Pull Request ${{ github.event.pull_request._links.html.href }}
-        View org Project https://github.com/orgs/uic-ts/projects/1
-
-
     steps:
       - name: Color variable conditions
         run: |
