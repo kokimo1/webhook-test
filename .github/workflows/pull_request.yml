@@ -24,6 +24,7 @@ jobs:
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
           fi
+          echo "::set-env name=MESSAGE_TEXT::status: <span style=\"color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;\">${{ github.event.pull_request.merged && 'MERGED' || github.event.pull_request.state }}</span><hr style=\"height:2px;margin-top:7px;noshade;background-color:#${{ env.STATUS_COLOR }};\">"
 
       - name: 📣 Send teams notification for OPENED pull request
         uses: simbo/msteams-message-card-action@latest
@@ -31,20 +32,7 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
-          message: >
-            status: 
-              <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-                {{
-                  if github.event.pull_request.merged
-                    return "MERGED"
-                  else
-                    return github.event.pull_request.state
-                }}
-              </span>
-              <hr style="height:2px;margin-top:7px;noshade;
-              background-color:#${{ env.STATUS_COLOR }};">
-
-
+          message: ${{ env.MESSAGE_TEXT }}
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
             View org Project https://github.com/orgs/uic-ts/projects/1
@@ -74,4 +62,3 @@ jobs:
                 -
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
-
