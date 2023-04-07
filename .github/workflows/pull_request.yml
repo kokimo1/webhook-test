@@ -13,12 +13,12 @@ jobs:
       MERGED_PURPLE: 5a00ba
     runs-on: ubuntu-latest
     steps:
-      - name: Set STATUS_COLOR
+      - name: Set the status color
         run: echo "STATUS_COLOR=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] && [ ${{ github.event.pull_request.merged }} == false ]; then echo ${{ env.CLOSED_RED }}; elif [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo ${{ env.MERGED_PURPLE }}; else echo ${{ env.OPENED_GREEN }}; fi)" >>    $GITHUB_ENV
 
 
       - name: 📣 Send teams notification for OPENED pull request
-        if: github.event.action == 'opened'
+        if: github.event.action == 'open'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
