@@ -13,12 +13,19 @@ jobs:
       MERGED_PURPLE: 5a00ba
     runs-on: ubuntu-latest
     steps:
-      - name: Set the status color
-        run: echo "STATUS_COLOR=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] && [ ${{ github.event.pull_request.merged }} == false ]; then echo ${{ env.CLOSED_RED }}; elif [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo ${{ env.MERGED_PURPLE }}; elif [ ${{ github.event.pull_request.state }} == 'opened' ]; then echo ${{ env.OPENED_GREEN }}; fi)" >>    $GITHUB_ENV
 
-
+      - name: Color variable conditions
+        run: |
+          if [ "${{ github.event.action == *'opened'* }}"]
+            echo "STATUS_COLOR=OPENED_GREEN" >> $GITHUB_ENV
+          fi
+          if [ "${{ github.event.action == *'closed'* }}"]
+            echo "STATUS_COLOR=CLOSED_RED" >> $GITHUB_ENV
+          fi
+          if [ "${{ github.event.action == *'opened'* }}"]
+            echo "STATUS_COLOR=MERGED_PURPLE" >> $GITHUB_ENV
+          fi
       - name: 📣 Send teams notification for OPENED pull request
-        if: github.event.action == 'opened'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
@@ -61,94 +68,3 @@ jobs:
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
 
-
-      - name: 📣 Send teams notification for MERGED pull request
-        if: github.event.pull_request.merged == true
-        uses: simbo/msteams-message-card-action@latest
-        with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.STATUS_COLOR }}
-          title: ${{ github.workflow }}
-          message: |
-            status: 
-            <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-              MERGED
-            </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.STATUS_COLOR }};">
-          buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href }}
-            View org Project https://github.com/orgs/uic-ts/projects/1
-          sections: |
-            -
-              activityTitle:
-              activitySubtitle:
-              facts:
-                -
-                  name: "Repo:"
-                  value: ${{ github.repository }}
-                -
-                  name: "Source branch:"
-                  value: ${{ github.head_ref }}
-                -
-                  name: "Target branch:"
-                  value: ${{ github.base_ref }}
-                -
-                  name: "Author:"
-                  value: ${{ github.triggering_actor }}
-                -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
-                -
-                  name: "Review status:"
-                  value: "${{ github.event.pull_request_review.state }}"
-                -
-                  name: "Commits in this PR:"
-                  value: ${{ github.event.pull_request.commits }}
-
-
-
-
-      - name: 📣 Send teams notification for CLOSED pull request
-        if: github.event.action == 'closed' && github.event.pull_request.merged == false
-        uses: simbo/msteams-message-card-action@latest
-        with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.STATUS_COLOR }}
-          title: ${{ github.workflow }}
-          message: |
-            status: 
-            <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-              ${{ github.event.pull_request.state }}
-            </span>
-            <hr style="height:2px;margin-top:7px;noshade;
-            background-color:#${{ env.STATUS_COLOR }};">
-          buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href }}
-            View org Project https://github.com/orgs/uic-ts/projects/1
-          sections: |
-            -
-              activityTitle:
-              activitySubtitle:
-              facts:
-                -
-                  name: "Repo:"
-                  value: ${{ github.repository }}
-                -
-                  name: "Source branch:"
-                  value: ${{ github.head_ref }}
-                -
-                  name: "Target branch:"
-                  value: ${{ github.base_ref }}
-                -
-                  name: "Author:"
-                  value: ${{ github.triggering_actor }}
-                -
-                  name: "PR #:"
-                  value: ${{ github.event.pull_request.number }}
-                -
-                  name: "Review status:"
-                  value: "${{ github.event.pull_request_review.state }}"
-                -
-                  name: "Commits in this PR:"
-                  value: ${{ github.event.pull_request.commits }}
