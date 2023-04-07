@@ -11,12 +11,8 @@ jobs:
     steps:
       - name: Set color_var
         run: |
-          echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] 
-           && [ ${{ github.event.pull_request.merged }} == false ]; 
-            then echo '003b99'; echo 'blue';
-          elif [ ${{ github.event.pull_request.state }} == 'closed' ]; 
-            then echo 'ad020a'; echo 'red';
-          else echo '019128'; fi)" >>    $GITHUB_ENV; echo 'green';
+          echo "color_var=$(if [ ${{ github.event.pull_request.state }} == 'closed' ] && [ ${{ github.event.pull_request.merged }} == false ]; then echo '003b99'; else if [ ${{ github.event.pull_request.state }} == 'closed' ]; then echo 'ad020a'; else echo '019128'; fi; fi)" >> $GITHUB_ENV; echo 'green';
+
 
 
       - name: 📣 Send teams notification for OPENED pull request
