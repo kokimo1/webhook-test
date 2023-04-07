@@ -16,13 +16,17 @@ jobs:
 
       - name: Color variable conditions
         run: |
+          echo "Pull Request State: ${{ github.event.pull_request.state }}"
           if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
+            echo "Setting STATUS_COLOR to OPENED_GREEN"
             echo "STATUS_COLOR=OPENED_GREEN" >> $GITHUB_ENV
           fi
           if [[ "${{ github.event.pull_request.state }}" == "closed" ]]; then
+            echo "Setting STATUS_COLOR to CLOSED_RED"
             echo "STATUS_COLOR=CLOSED_RED" >> $GITHUB_ENV
           fi
           if [[ "${{ github.event.pull_request.state }}" == "merged" ]]; then
+            echo "Setting STATUS_COLOR to MERGED_PURPLE"
             echo "STATUS_COLOR=MERGED_PURPLE" >> $GITHUB_ENV
           fi
 
