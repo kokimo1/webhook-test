@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       STATUS_COLOR: ''
-      SECTION_CONTENT: |
+      SECTION_CONTENT: '|
         -
           activityTitle:
           activitySubtitle:
@@ -32,22 +32,23 @@ jobs:
               value: ${{ github.event.pull_request.number }}
             -
               name: "Review status:"
-              value: "${{ github.event.pull_request_review.state }}"
+              value: ${{ github.event.pull_request_review.state }}
             -
               name: "Commits in this PR:"
-              value: ${{ github.event.pull_request.commits }}
+              value: ${{ github.event.pull_request.commits }}'
 
-      MESSAGE_CONTENT: |
+      MESSAGE_CONTENT: '|
         status:
         <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
           ${{ github.event.pull_request.state }}
         </span>
         <hr style="height:2px;margin-top:7px;noshade;
-        background-color:#${{ env.STATUS_COLOR }};">
+        background-color:#${{ env.STATUS_COLOR }};">'
 
-      BUTTONS_CONTENT: |
+      BUTTONS_CONTENT: '|
         View Pull Request ${{ github.event.pull_request._links.html.href }}
-        View org Project https://github.com/orgs/uic-ts/projects/1
+        View org Project https://github.com/orgs/uic-ts/projects/1'
+
 
     steps:
       - name: Color variable conditions
