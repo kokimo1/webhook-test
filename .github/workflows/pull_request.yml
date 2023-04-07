@@ -31,13 +31,19 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           title: ${{ github.workflow }}
-          message: |
+          message: >
             status: 
               <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-                ${{ if github.event.pull_request.merged }}MERGED${{ else }}${{ github.event.pull_request.state }}${{ endif }}
+                {{
+                  if github.event.pull_request.merged
+                    return "MERGED"
+                  else
+                    return github.event.pull_request.state
+                }}
               </span>
               <hr style="height:2px;margin-top:7px;noshade;
               background-color:#${{ env.STATUS_COLOR }};">
+
 
           buttons: |
             View Pull Request ${{ github.event.pull_request._links.html.href }}
