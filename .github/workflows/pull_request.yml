@@ -5,41 +5,13 @@ on:
     branches: [ develop ]
     types: [opened, reopened, closed]
 
-
 jobs:
   notify:
     runs-on: ubuntu-latest
+
     env:
-      STATUS_COLOR: ''
-      MESSAGE_TEXT: ''
-    steps:
-      - name: Color variable conditions
-        run: |
-          if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
-            echo "019128" >> $GITHUB_ENV
-          fi
-          if [[ "${{ github.event.pull_request.state }}" == "closed" ]]; then
-            echo "ad020a" >> $GITHUB_ENV
-          fi
-          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
-            echo "5a00ba" >> $GITHUB_ENV
-          fi
-          echo "::set-env name=STATUS_COLOR::$(cat $GITHUB_ENV)"
-          echo "::set-env name=MESSAGE_TEXT::<span style=\"color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;\">${{ github.event.pull_request.merged && 'MERGED' || github.event.pull_request.state }}</span><hr style=\"height:2px;margin-top:7px;noshade;background-color:#${{ env.STATUS_COLOR }};\">"
-
-
-      - name: 📣 Send teams notification for  pull request
-        if: github.event.action == 'opened'
-        uses: simbo/msteams-message-card-action@latest
-        with:
-          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          color: ${{ env.STATUS_COLOR }}
-          title: ${{ github.workflow }}
-          message: ${{ env.MESSAGE_TEXT }}
-          buttons: |
-            View Pull Request ${{ github.event.pull_request._links.html.href }}
-            View org Project https://github.com/orgs/uic-ts/projects/1
-          sections: |
+      SECTION_CONTENT: '
+                |
             -
               activityTitle:
               activitySubtitle:
@@ -65,3 +37,72 @@ jobs:
                 -
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
+        '
+      MESSAGE_CONTENT: '
+              |
+            status:
+            <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
+              ${{ github.event.pull_request.state }}
+            </span>
+            <hr style="height:2px;margin-top:7px;noshade;
+            background-color:#${{ env.STATUS_COLOR }};">
+        '
+      BUTTONS_CONTENT: '
+              |
+            View Pull Request ${{ github.event.pull_request._links.html.href }}
+            View org Project https://github.com/orgs/uic-ts/projects/1
+        '
+
+
+    steps:
+      - name: Color variable conditions
+        run: |
+          if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
+            echo "STATUS_COLOR=019128" >> $GITHUB_ENV
+            echo "GREEN"
+          fi
+          if [[ "${{ github.event.pull_request.state }}" == "closed" ]]; then
+            echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
+            echo "RED"
+          fi
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
+            echo "PURPLE"
+          fi
+
+      - name: 📣 Send teams notification for OPENED pull request
+        if: ${{ github.event.pull_request.state }} == open
+        uses: simbo/msteams-message-card-action@latest
+        with:
+          title: "OPEN"
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          color: ${{ env.STATUS_COLOR }}
+          message: $ {{ env.MESSAGE_CONTENT }}
+          buttons: ${{ env.BUTTONS_CONTENT }}
+          sections: ${{ env.SECTION_CONTENT }}
+
+
+      - name: 📣 Send teams notification for CLOSED pull request
+        if: ${{ github.event.pull_request.state }} == closed
+        uses: simbo/msteams-message-card-action@latest
+        with:
+          title: "CLOSED"
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          color: ${{ env.STATUS_COLOR }}
+          message: $ {{ env.MESSAGE_CONTENT }}
+          buttons: ${{ env.BUTTONS_CONTENT }}
+          sections: ${{ env.SECTION_CONTENT }}
+
+
+      - name: 📣 Send teams notification for MERGED pull request
+        if: ${{ github.event.pull_request.merged }} == true
+        uses: simbo/msteams-message-card-action@latest
+        with:
+          title: "MERGED"
+          webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          color: ${{ env.STATUS_COLOR }}
+          message: $ {{ env.MESSAGE_CONTENT }}
+          buttons: ${{ env.BUTTONS_CONTENT }}
+          sections: ${{ env.SECTION_CONTENT }}
+
+
