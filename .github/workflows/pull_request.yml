@@ -34,7 +34,7 @@ jobs:
           message: |
             status: 
               <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-                ${{ github.event.pull_request.merged ? 'MERGED' : github.event.pull_request.state }}
+                ${{ 'github.event.pull_request.merged' ? 'MERGED' : 'github.event.pull_request.state' }}
               </span>
               <hr style="height:2px;margin-top:7px;noshade;
               background-color:#${{ env.STATUS_COLOR }};">
