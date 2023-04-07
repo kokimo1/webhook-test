@@ -20,7 +20,7 @@ jobs:
             echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
             echo "RED"
           fi
-          if [[ "${{ github.event.pull_request.state }}" == "merged" ]]; then
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
           fi
