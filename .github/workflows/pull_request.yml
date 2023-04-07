@@ -99,4 +99,4 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK_URL }}
           color: ${{ env.STATUS_COLOR }}
           message: ${{ env.MESSAGE_CONTENT }}
-          buttons: ${{ env.BUTTON }}
+          buttons: ${{ env.BUTTONS_CONTENT }}
