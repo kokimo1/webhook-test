@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      STATUS_COLOR: ''
       SECTION_CONTENT: '
                 |
             -
