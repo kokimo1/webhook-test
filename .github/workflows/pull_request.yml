@@ -16,15 +16,16 @@ jobs:
 
       - name: Color variable conditions
         run: |
-          if [ "${{ github.event.action == 'opened' }}"]
+          if [[ "${{ github.event.action }}" == "opened" ]]; then
             echo "STATUS_COLOR=OPENED_GREEN" >> $GITHUB_ENV
           fi
-          if [ "${{ github.event.action == 'closed' }}"]
+          if [[ "${{ github.event.action }}" == "closed" ]]; then
             echo "STATUS_COLOR=CLOSED_RED" >> $GITHUB_ENV
           fi
-          if [ "${{ github.event.action == 'merged' }}"]
+          if [[ "${{ github.event.action }}" == "merged" ]]; then
             echo "STATUS_COLOR=MERGED_PURPLE" >> $GITHUB_ENV
           fi
+
       - name: 📣 Send teams notification for OPENED pull request
         uses: simbo/msteams-message-card-action@latest
         with:
