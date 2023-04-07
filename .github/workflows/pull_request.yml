@@ -1,29 +1,23 @@
-name: 'Pull Request'
-
-on:
-  pull_request:
-    branches: [ develop ]
-    types: [opened, reopened, closed]
-
 jobs:
   notify:
     runs-on: ubuntu-latest
+    env:
+      STATUS_COLOR: ''
+      MESSAGE_TEXT: ''
     steps:
       - name: Color variable conditions
         run: |
           if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
-            echo "STATUS_COLOR=019128" >> $GITHUB_ENV
-            echo "GREEN"
+            echo "019128" >> $GITHUB_ENV
           fi
           if [[ "${{ github.event.pull_request.state }}" == "closed" ]]; then
-            echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
-            echo "RED"
+            echo "ad020a" >> $GITHUB_ENV
           fi
           if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
-            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
-            echo "PURPLE"
+            echo "5a00ba" >> $GITHUB_ENV
           fi
-          echo "::set-env name=MESSAGE_TEXT::status: <span style=\"color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;\">${{ github.event.pull_request.merged && 'MERGED' || github.event.pull_request.state }}</span><hr style=\"height:2px;margin-top:7px;noshade;background-color:#${{ env.STATUS_COLOR }};\">"
+          echo "::set-env name=STATUS_COLOR::$(cat $GITHUB_ENV)"
+          echo "::set-env name=MESSAGE_TEXT::<span style=\"color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;\">${{ github.event.pull_request.merged && 'MERGED' || github.event.pull_request.state }}</span><hr style=\"height:2px;margin-top:7px;noshade;background-color:#${{ env.STATUS_COLOR }};\">"
 
 
       - name: 📣 Send teams notification for  pull request
@@ -63,5 +57,3 @@ jobs:
                 -
                   name: "Commits in this PR:"
                   value: ${{ github.event.pull_request.commits }}
-
-
