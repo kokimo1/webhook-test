@@ -24,3 +24,20 @@ jobs:
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
           fi
+
+
+
+      - name: Send teams notification for ⭐MERGED⭐ pull request
+        run: |
+          if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
+            echo "STATUS_COLOR=019128" >> $GITHUB_ENV
+            echo "GREEN"
+          fi
+          if [[ "${{ github.event.pull_request.state }}" == "closed" && "${{ github.event.pull_request.merged }}" == false ]]; then
+            echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
+            echo "RED"
+          fi
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
+            echo "PURPLE"
+          fi
