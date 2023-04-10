@@ -72,8 +72,8 @@ jobs:
                   value: ${{ github.event.pull_request.commits }}
 
 
-      - name: Send teams notification for ⭐MERGED⭐ pull request
-        if: github.event.pull_request.merged == 'true'
+      - name: Send teams notification for ⭐CLOSED⭐ pull request
+        if: github.event.pull_request.state == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
@@ -82,7 +82,7 @@ jobs:
           message: |
             status:
             <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-              MERGED
+              CLOSED
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
             background-color:#${{ env.STATUS_COLOR }};">
@@ -117,19 +117,18 @@ jobs:
                   value: ${{ github.event.pull_request.commits }}
 
 
-
-
-      - name: Send teams notification for ⭐CLOSED⭐ pull request
-        if: github.event.pull_request.state == 'closed' && github.event.pull_request.merged == false
+      - name: Send teams notification for ⭐MERGED⭐ pull request
+        if: github.event.pull_request.merged == 'true'
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
-          color: ${{ env.STATUS_COLOR }}
+          color: ${{ github.event.pull_request.merged == 'true' }}#5a00ba{{ else }}#00FF00{{ endif }}
+
           title: ${{ github.workflow }}
           message: |
             status:
             <span style="color:#ffffff;background-color:#${{ env.STATUS_COLOR }};padding:3px;">
-              CLOSED
+              MERGED
             </span>
             <hr style="height:2px;margin-top:7px;noshade;
             background-color:#${{ env.STATUS_COLOR }};">
