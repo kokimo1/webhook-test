@@ -73,7 +73,7 @@ jobs:
 
 
       - name: Send teams notification for ⭐CLOSED⭐ pull request
-        if: github.event.pull_request.state == 'closed' && github.event.pull_request.merged == false ]
+        if: github.event.pull_request.state == 'closed' && github.event.pull_request.merged == false
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
