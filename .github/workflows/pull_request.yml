@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+
       - name: Color variable conditions
         run: |
           if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
@@ -18,8 +19,11 @@ jobs:
           elif [[ "${{ github.event.pull_request.merged }}" == true ]]; then
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
-          elif [[ "${{ github.event.pull_request.merged }}" == false && github.event.pull_request.state == "closed" ]];
+          elif [[ "${{ github.event.pull_request.merged }}" == false && "${{ github.event.pull_request.state }}" == "closed" ]]; then
+            echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
+            echo "RED"
           fi
+
 
 
       - name: Send teams notification for ⭐OPENED⭐ pull request
