@@ -18,7 +18,7 @@ jobs:
           elif [[ "${{ github.event.pull_request.merged }}" == true ]]; then
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
-          elif [[ "${{ github.event.pull_request.merged" == false && github.event.pull_request.state == "closed" ]];
+          elif [[ "${{ github.event.pull_request.merged }}" == false && github.event.pull_request.state == "closed" ]];
           fi
 
 
