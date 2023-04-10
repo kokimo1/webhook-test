@@ -122,7 +122,7 @@ jobs:
         uses: simbo/msteams-message-card-action@latest
         with:
           webhook: ${{ secrets.SDD_TEAMS_WEBHOOK_URL }}
-          color: ${{ github.event.pull_request.merged == 'true' }}#5a00ba{{ else }}#00FF00{{ endif }}
+          color: ${{ env.STATUS_COLOR }}
 
           title: ${{ github.workflow }}
           message: |
