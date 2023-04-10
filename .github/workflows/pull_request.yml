@@ -24,14 +24,7 @@ jobs:
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
             echo "PURPLE"
           fi
-          if [[ "${{ github.event.pull_request.merged }}" == "false" ]]; then
-            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
-            echo "NOT MERGED"
-          fi
-          if [[ "${{ github.event.pull_request.merged }}" == "false" && 1=2 ]]; then
-            echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
-            echo "TESTING"
-          fi
+
 
 
       - name: Send teams notification for ⭐OPENED⭐ pull request
