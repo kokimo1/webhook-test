@@ -1,6 +1,8 @@
 name: Accessibility Checker
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   accessibility:
@@ -16,4 +18,4 @@ jobs:
       - name: Make axe executable
         run: chmod +x node_modules/axe-core/bin/axe
       - name: Run Axe-core
-        run: node_modules/axe-core/bin/axe ${{ github.event.pull_request.head.ref }}
+        run: node node_modules/axe-core/axe.js ${{ github.event.pull_request.head.ref }}
