@@ -15,13 +15,13 @@ jobs:
         run: |
           if [[ "${{ github.event.pull_request.state }}" == "open" ]]; then
             echo "STATUS_COLOR=019128" >> $GITHUB_ENV
-            echo "GREEN"
+            echo "OPEN, GREEN 019128"
           elif [[ "${{ github.event.pull_request.merged }}" == true ]]; then
             echo "STATUS_COLOR=5a00ba" >> $GITHUB_ENV
-            echo "PURPLE"
+            echo "MERGED, PURPLE 5a00ba"
           elif [[ "${{ github.event.pull_request.merged }}" == false && "${{ github.event.pull_request.state }}" == "closed" ]]; then
             echo "STATUS_COLOR=ad020a" >> $GITHUB_ENV
-            echo "RED"
+            echo "CLOSED, RED ad020a"
           fi
 
 
