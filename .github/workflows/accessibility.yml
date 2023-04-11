@@ -2,22 +2,23 @@ name: Accessibility Checker
 
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronize]
 
 jobs:
   accessibility:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: '14.x'
       - name: Install dependencies
-        run: npm install axe-core
-      - name: Reinstall package
-        run: rm -rf node_modules && npm install
-      - name: Make axe executable
-        run: chmod +x node_modules/axe-core/bin/axe
-      - name: Run Axe-core
-        run: node node_modules/axe-core/axe.js ${{ github.event.pull_request.head.ref }}
+        run: npm install
+      - name: Run pa11y
+        run: npx pa11y-ci --config=.pa11yci.json --json > results.json
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: accessibility-results
+          path: results.json
