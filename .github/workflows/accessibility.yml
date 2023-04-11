@@ -1,0 +1,17 @@
+name: Accessibility Checker
+
+on: pull_request
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm install axe-core
+      - name: Run Axe-core
+        run: npx axe ${{ github.event.pull_request.head.ref }}
