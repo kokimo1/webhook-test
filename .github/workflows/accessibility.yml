@@ -13,6 +13,8 @@ jobs:
           node-version: 14
       - name: Install dependencies
         run: npm install axe-core
+      - name: Make axe executable
+        run: chmod +x node_modules/axe-core/bin/axe
       - name: Run Axe-core
         run: node_modules/axe-core/bin/axe ${{ github.event.pull_request.head.ref }}
 
