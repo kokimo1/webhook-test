@@ -2,23 +2,20 @@ name: Accessibility Checker
 
 on:
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   accessibility:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: 14
       - name: Install dependencies
         run: npm install
-      - name: Run pa11y
-        run: npx pa11y-ci --config=.pa11yci.json --json > results.json
-      - name: Upload results
-        uses: actions/upload-artifact@v2
-        with:
-          name: accessibility-results
-          path: results.json
+      - name: Run pa11y-ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx pa11y-ci --config=.pa11yci.json --json > results.json && gh pr comment ${{ github.event.pull_request.number }} --body "$(cat results.json)"
