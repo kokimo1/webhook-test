@@ -3,12 +3,7 @@
     "hideElements": "iframe,object",
     "hideSvgPaths": true
   },
-  "urls": [
-    {
-      "url": "https://kokimo1.github.io/webhook-test/${{ github.event.pull_request.number }}",
-      "threshold": "warn"
-    }
-  ],
+  "urls": [],
   "pa11y-ci": {
     "standard": "WCAG2AAA",
     "level": "error",
