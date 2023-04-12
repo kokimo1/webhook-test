@@ -1,0 +1,76 @@
+name: Issue report
+description: Report an issue, bug, or error message
+title: "[Issue]: "
+labels: ["issue"]
+
+body:
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       Thank you for your submission
+
+  - type: input
+    id: issue-contact-name
+    attributes:
+      label: Your name
+      placeholder: "Your name"
+    validations:
+      required: true
+  - type: input
+    id: issue-contact-email
+    attributes:
+      label: Your email
+      placeholder: "netid@uic.edu"
+    validations:
+      required: true
+  - type: input
+    id: issue-vc-unit
+    attributes:
+      label: VC Unit/College and your department name
+      placeholder: "Vice Chancellor for Innovation, Office of Intergalactic Outreach"
+    validations:
+      required: true
+  - type: checkboxes
+    id: issue-list
+    attributes:
+      label: Issue
+      description: 'If you select "Other," please describe the issue in the box at the bottom of this form.'
+      options:
+        - label: I can't log in
+          required: false
+        - label: A page is not displaying correctly
+          required: false
+        - label: Menu problems
+          required: false
+        - label: Form problems
+          required: false
+        - label: Other
+          required: false
+  - type: textarea
+    id: issue-url
+    attributes:
+      label: "The full URL where the issue occurs. E.g.  https://uic.edu"
+      placeholder: "https://uic.edu"
+    validations:
+      required: true
+  - type: checkboxes
+    id: issue-dev-status
+    attributes:
+      label: "Can you contribute to the codebase for this issue?"
+      options:
+        - label: "Yes"
+          required: false
+  - type: checkboxes
+    id: issue-error-message
+    attributes:
+      label: "Do you see an error message?"
+      options:
+        - label: "Yes"
+          required: false
+  - type: textarea
+    id: issue-describe-problem
+    attributes:
+      label: "Describe the problem"
+      description: "To attach files: (1) click in the text box below and (2) drag & drop the file(s) into the box. If you want to submit a screenshot but don't know how, [follow these instructions](https://www.take-a-screenshot.org/)"
+    validations:
+      required: true
