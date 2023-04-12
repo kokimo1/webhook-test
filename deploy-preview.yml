@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  PREVIEW_URL: https://my-preview-environment.com/${{ github.event.number }}
+  PREVIEW_URL: https://kokimo1.github.io/webhook-test/${{ github.event.pull_request.number }}
 
 jobs:
   deploy:
@@ -17,9 +17,9 @@ jobs:
 
     - name: Build and deploy
       run: |
-        # Build your application here
+        # Build application here
         npm run build
-        npx gh-pages --dotfiles --add --message "Deploy preview"
-        
+        npm run build && npm run deploy
+
     - name: Set preview URL
       run: echo "PREVIEW_URL=${PREVIEW_URL}" >> $GITHUB_ENV
