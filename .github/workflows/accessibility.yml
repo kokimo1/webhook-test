@@ -33,7 +33,7 @@ jobs:
       - name: List files in directory
         run: ls -al
       - name: Set file permissions
-        run: chmod 777 results.json
+        run: chmod 666 results.json
       - name: Check if results.json exists and is not empty
         run: |
           if [ -s "results.json" ]; then
