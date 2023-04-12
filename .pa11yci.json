@@ -12,7 +12,7 @@
   "pa11y-ci": {
     "standard": "WCAG2AAA",
     "level": "error",
-    "timeout": 60000,
+    "timeout": 30000,
     "hideElements": "iframe,object",
     "hideSvgPaths": true
   },
