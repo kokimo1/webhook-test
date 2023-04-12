@@ -28,6 +28,10 @@ jobs:
           node node_modules/puppeteer/install.js
       - name: Run pa11y-ci
         run: npx pa11y-ci --config=.pa11yci.json --json > results.json
+      - name: List files in directory
+        run: ls -al
+      - name: Show path
+        run: pwd
       - name: Check if results.json exists and is not empty
         run: |
           if [ -s "results.json" ]; then
@@ -35,3 +39,7 @@ jobs:
           else
             echo "Error: results.json is empty or does not exist"
           fi
+      - name: List files in directory
+        run: ls -al
+      - name: Show path
+        run: pwd
