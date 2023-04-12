@@ -24,6 +24,10 @@
     "reporter": "github-pr-check"
   },
   "chromeLaunchConfig": {
-    "executablePath": "/usr/bin/google-chrome-stable"
+    "executablePath": "/usr/bin/google-chrome-stable",
+    "chromeFlags": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
   }
 }
