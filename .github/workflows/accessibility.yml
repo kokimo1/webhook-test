@@ -6,7 +6,6 @@ on:
 
 env:
   GITHUB_TOKEN: '${{ secrets.A11Y_LINTER_TOKEN }}'
-  PREVIEW_URL: ${{ env.PREVIEW_URL }}
 
 jobs:
   accessibility:
@@ -29,6 +28,8 @@ jobs:
         run: |
           npm install
           node node_modules/puppeteer/install.js
+      - name: Set preview URL
+        run: echo "PREVIEW_URL=https://kokimo1.github.io/webhook-test/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Run pa11y-ci
         env:
           PREVIEW_URL: ${{ env.PREVIEW_URL }}
