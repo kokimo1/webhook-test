@@ -6,6 +6,7 @@ on:
 
 env:
   GITHUB_TOKEN: '${{ secrets.A11Y_LINTER_TOKEN }}'
+  PREVIEW_URL: ${{ env.PREVIEW_URL }}
 
 jobs:
   accessibility:
@@ -29,7 +30,9 @@ jobs:
           npm install
           node node_modules/puppeteer/install.js
       - name: Run pa11y-ci
-        run: npx pa11y-ci --config=.pa11yci.json --json > results.json
+        env:
+          PREVIEW_URL: ${{ env.PREVIEW_URL }}
+        run: npx pa11y-ci --config=.pa11yci.json --json "${{ env.PREVIEW_URL }}" > results.json
       - name: List files in directory
         run: ls -al
       - name: Set file permissions
