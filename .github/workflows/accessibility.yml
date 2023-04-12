@@ -39,7 +39,7 @@ jobs:
           if [ -s "results.json" ]; then
             gh pr comment ${{ github.event.pull_request.number }} --body "$(cat results.json)"
           else
-            echo "Error: results.json is empty or does not exist"
+            echo "Error: results.json is empty or does not exist. Also, this should be the PR number: ${{ github.event.pull_request.number }}."
           fi
       - name: List files in directory
         run: ls -al
