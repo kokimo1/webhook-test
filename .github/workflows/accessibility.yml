@@ -20,7 +20,6 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-          node-version: 16
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
@@ -33,10 +32,8 @@ jobs:
         run: npx pa11y-ci --config=.pa11yci.json --json > results.json
       - name: List files in directory
         run: ls -al
-      - name: Show path
-        run: pwd
       - name: Set file permissions
-        run: chmod 777 results.json
+        run: chmod 666 results.json
       - name: Check if results.json exists and is not empty
         run: |
           if [ -s "results.json" ]; then
@@ -46,5 +43,3 @@ jobs:
           fi
       - name: List files in directory
         run: ls -al
-      - name: Show path
-        run: pwd
