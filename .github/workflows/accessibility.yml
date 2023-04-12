@@ -17,5 +17,5 @@ jobs:
         run: npm install
       - name: Run pa11y-ci
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
         run: npx pa11y-ci --config=.pa11yci.json --json > results.json && gh pr comment ${{ github.event.pull_request.number }} --body "$(cat results.json)"
