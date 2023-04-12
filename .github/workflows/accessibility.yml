@@ -36,7 +36,7 @@ jobs:
         run: chmod +r results.json
       - name: Check if results.json exists and is not empty
         run: |
-          if [ -s "results.json" ]; then
+          if [ "results.json" ]; then
             gh pr comment ${{ github.event.pull_request.number }} --body "$(cat results.json)"
           else
             echo "Error: results.json is empty or does not exist. Also, this should be the PR number: ${{ github.event.pull_request.number }}."
