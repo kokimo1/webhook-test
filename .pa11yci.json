@@ -22,5 +22,8 @@
       "number": "${{ github.event.pull_request.number }}"
     },
     "reporter": "github-pr-check"
+  },
+  "chromeLaunchConfig": {
+    "executablePath": "/usr/bin/google-chrome-stable"
   }
 }
