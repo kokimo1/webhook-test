@@ -1,0 +1,26 @@
+{
+  "defaults": {
+    "hideElements": "iframe,object",
+    "hideSvgPaths": true
+  },
+  "urls": [
+    {
+      "url": "http://localhost:3000",
+      "threshold": "warn"
+    }
+  ],
+  "pa11y-ci": {
+    "standard": "WCAG2AAA",
+    "level": "error",
+    "timeout": 60000,
+    "hideElements": "iframe,object",
+    "hideSvgPaths": true
+  },
+  "github": {
+    "token": "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",
+    "pullRequest": {
+      "number": "${{ github.event.pull_request.number }}"
+    },
+    "reporter": "github-pr-check"
+  }
+}

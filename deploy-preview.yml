@@ -1,0 +1,24 @@
+name: Deploy Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+env:
+  PREVIEW_URL: https://my-preview-environment.com/${{ github.event.number }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and deploy
+      run: |
+        # Build your application here
+        # Deploy it to your staging environment
+
+    - name: Set preview URL
+      run: echo "PREVIEW_URL=${PREVIEW_URL}" >> $GITHUB_ENV
