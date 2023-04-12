@@ -17,7 +17,7 @@
     "hideSvgPaths": true
   },
   "github": {
-    "token": "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",
+    "token": "${{ secrets.A11Y_LINTER_TOKEN }}",
     "pullRequest": {
       "number": "${{ github.event.pull_request.number }}"
     },

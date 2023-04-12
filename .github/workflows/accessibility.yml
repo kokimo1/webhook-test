@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  GITHUB_TOKEN: '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'
+  GITHUB_TOKEN: '${{ secrets.A11Y_LINTER_TOKEN }}'
 
 jobs:
   accessibility:
