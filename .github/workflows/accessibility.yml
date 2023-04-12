@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5c7d2788fc73b128b61bca26947eb440c7db6179e1fd8efc7d936449428773d9
-size 594
+name: Accessibility Checker
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm install
+      - name: Run pa11y-ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx pa11y-ci --config=.pa11yci.json --json > results.json && gh pr comment ${{ github.event.pull_request.number }} --body "$(cat results.json)"
