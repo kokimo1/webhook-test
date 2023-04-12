@@ -18,7 +18,8 @@ jobs:
     - name: Build and deploy
       run: |
         # Build your application here
-        # Deploy it to your staging environment
-
+        npm run build
+        npx gh-pages --dotfiles --add --message "Deploy preview"
+        
     - name: Set preview URL
       run: echo "PREVIEW_URL=${PREVIEW_URL}" >> $GITHUB_ENV
